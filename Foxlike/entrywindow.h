@@ -15,6 +15,9 @@ public:
     EntryWindow(QWidget *parent = nullptr);
     ~EntryWindow();
 
+private slots:
+    void on_continueButton_clicked();
+
 private:
     Ui::EntryWindow *ui;
     const int DEFAULT_WINDOW_WIDTH = 1280;

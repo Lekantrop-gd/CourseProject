@@ -150,12 +150,18 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="emailButton">
+        <widget class="QLineEdit" name="emailIntup">
          <property name="minimumSize">
           <size>
            <width>0</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QLineEdit {
@@ -172,18 +178,22 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="passwordInput">
          <property name="minimumSize">
           <size>
            <width>0</width>
            <height>40</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QLineEdit {
-	border-radius: 5%;
-	border: 1px solid rgb(104, 104, 104);
-}</string>
+          <string notr="true">border-radius: 5%;
+border: 1px solid rgb(104, 104, 104);</string>
          </property>
          <property name="inputMask">
           <string/>
@@ -223,11 +233,19 @@
            <height>50</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	background-color: rgb(16, 74, 130);
 	border-radius: 5%;
-	animation-duration: 0.5s;
 }
 
 QPushButton:hover {
@@ -257,20 +275,29 @@ QPushButton:hover {
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="continueAsGuest">
+        <widget class="QPushButton" name="continueAsGuestButton">
          <property name="minimumSize">
           <size>
            <width>0</width>
            <height>40</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-	font-size: 12px;
+	color: rgb(150, 150, 150);
 }
 
 QPushButton:hover  {
-	font-size: 13px;
+	color: rgb(255, 255, 255);
 }</string>
          </property>
          <property name="text">

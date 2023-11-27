@@ -1,5 +1,6 @@
 #include "entrywindow.h"
 #include "ui_entrywindow.h"
+#include "browsewindow.h"
 #include <QPixmap>
 #include <QIcon>
 
@@ -19,5 +20,12 @@ EntryWindow::EntryWindow(QWidget *parent)
 EntryWindow::~EntryWindow()
 {
     delete ui;
+}
+
+void EntryWindow::on_continueButton_clicked()
+{
+    BrowseWindow *browseWindow = new BrowseWindow();
+    browseWindow->show();
+    this->hide();
 }
 
