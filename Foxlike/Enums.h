@@ -4,8 +4,8 @@
 #endif // ENUMS_H
 
 enum class AccountType {
-    admin,
     user,
+    admin,
     developer,
     guest
 };

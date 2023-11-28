@@ -190,27 +190,22 @@ QPushButton:hover  {
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="AccountButton">
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
+        <widget class="QPushButton" name="accountButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: transparent;</string>
          </property>
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../UI/Resources/avatar-icon.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../UI/Resources/avatar-icon.png</normaloff>../UI/Resources/avatar-icon.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
          </property>
         </widget>
        </item>

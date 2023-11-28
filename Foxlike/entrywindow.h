@@ -18,6 +18,8 @@ public:
 private slots:
     void on_continueButton_clicked();
 
+    void on_continueAsGuestButton_clicked();
+
 private:
     Ui::EntryWindow *ui;
     const int DEFAULT_WINDOW_WIDTH = 1280;

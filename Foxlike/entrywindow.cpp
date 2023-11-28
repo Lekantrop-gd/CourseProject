@@ -24,7 +24,13 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    BrowseWindow *browseWindow = new BrowseWindow();
+
+}
+
+
+void EntryWindow::on_continueAsGuestButton_clicked()
+{
+    BrowseWindow *browseWindow = new BrowseWindow(this, AccountType::guest);
     browseWindow->show();
     this->hide();
 }

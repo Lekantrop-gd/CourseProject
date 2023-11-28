@@ -1,7 +1,7 @@
 #include "browsewindow.h"
 #include "ui_browsewindow.h"
 
-BrowseWindow::BrowseWindow(QWidget *parent) :
+BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask about DIP
     QMainWindow(parent),
     ui(new Ui::BrowseWindow)
 {
