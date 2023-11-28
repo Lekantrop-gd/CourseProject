@@ -9,10 +9,11 @@ QWidget* CardCreator::getGameCard(QString image, QString title, QString descript
 {
     QWidget *cardWidget = new QWidget();
     cardWidget->setCursor(Qt::PointingHandCursor);
+    cardWidget->setMaximumSize(320, 240);
 
     QPixmap gameImageResource(image);
     QLabel *gameImage = new QLabel();
-    gameImage->setPixmap(gameImageResource.scaled(300, 150));
+    gameImage->setPixmap(gameImageResource.scaled(320, 180));
 
     QLabel *gameTitle = new QLabel(title);
     gameTitle->setStyleSheet("color: rgb(200, 200, 200); font-size: 15px");
