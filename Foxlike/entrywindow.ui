@@ -60,7 +60,7 @@
      </spacer>
     </item>
     <item row="1" column="1" rowspan="2">
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="LogInFrame" native="true">
       <property name="minimumSize">
        <size>
         <width>400</width>
@@ -112,7 +112,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="signInButton">
+        <widget class="QLabel" name="signInLabel">
          <property name="font">
           <font>
            <family>Calibri</family>
@@ -150,7 +150,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="emailIntup">
+        <widget class="QLineEdit" name="emailintup">
          <property name="minimumSize">
           <size>
            <width>0</width>
