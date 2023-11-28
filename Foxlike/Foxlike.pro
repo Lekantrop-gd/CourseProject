@@ -15,6 +15,7 @@ SOURCES += \
     entrywindow.cpp
 
 HEADERS += \
+    Enums.h \
     browsewindow.h \
     cardcreator.h \
     entrywindow.h
