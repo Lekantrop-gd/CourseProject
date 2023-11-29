@@ -2,6 +2,8 @@
 #define ENTRYWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
+#include "Enums.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EntryWindow; }
@@ -10,6 +12,9 @@ QT_END_NAMESPACE
 class EntryWindow : public QMainWindow
 {
     Q_OBJECT
+
+signals:
+    void userLoggedIn(QString name, QString balance, AccountType accountType);
 
 public:
     EntryWindow(QWidget *parent = nullptr);

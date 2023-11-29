@@ -1,9 +1,9 @@
 #include "browsewindow.h"
 #include "ui_browsewindow.h"
-#include "profilewindow.h"
+#include "entrywindow.h"
 #include "cardcreator.h"
 
-BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask about DIP, чи не перегружений відповідальностями цей конструктор
+BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не перегружений відповідальностями цей конструктор
     QMainWindow(parent),
     ui(new Ui::BrowseWindow)
 {
@@ -11,9 +11,6 @@ BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask abo
 
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
-
-    this->accountType = accountType;
-    this->thisParent = parent;
 
     CardCreator cardCreator;
 
@@ -36,6 +33,13 @@ BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask abo
             counter++;
         }
     }
+
+    this->entryWindow = new EntryWindow();
+    this->user = new User(entryWindow);
+    this->profileWindow = new ProfileWindow(user);
+
+    connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::show);
+    connect(profileWindow, &ProfileWindow::close, this, &BrowseWindow::show);
 }
 
 BrowseWindow::~BrowseWindow()
@@ -45,15 +49,11 @@ BrowseWindow::~BrowseWindow()
 
 void BrowseWindow::on_accountButton_clicked()
 {
-    if (this->accountType == AccountType::guest) {
-        this->hide();
-        this->thisParent->show();
+    this->hide();
+    if (this->user->getAccountType() != AccountType::guest) {
+        this->profileWindow->show();
     }
-
     else {
-        ProfileWindow* profileWindow = new ProfileWindow(this);
-        this->hide();
-        profileWindow->show();
+        this->entryWindow->show();
     }
 }
-

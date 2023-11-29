@@ -1,6 +1,5 @@
 #include "entrywindow.h"
 #include "ui_entrywindow.h"
-#include "browsewindow.h"
 #include <QPixmap>
 #include <QIcon>
 
@@ -24,13 +23,12 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-
+    emit userLoggedIn("Sponge Bob", "100000$", AccountType::user);
+    this->hide();
 }
 
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
-    BrowseWindow *browseWindow = new BrowseWindow(this, AccountType::user);
-    browseWindow->show();
     this->hide();
 }
 
