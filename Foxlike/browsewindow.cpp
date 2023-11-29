@@ -1,7 +1,9 @@
 #include "browsewindow.h"
 #include "ui_browsewindow.h"
+#include "profilewindow.h"
+#include "cardcreator.h"
 
-BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask about DIP
+BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask about DIP, чи не перегружений відповідальностями цей конструктор
     QMainWindow(parent),
     ui(new Ui::BrowseWindow)
 {
@@ -9,6 +11,9 @@ BrowseWindow::BrowseWindow(QWidget *parent, AccountType accountType) : //Ask abo
 
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
+
+    this->accountType = accountType;
+    this->thisParent = parent;
 
     CardCreator cardCreator;
 
@@ -37,3 +42,18 @@ BrowseWindow::~BrowseWindow()
 {
     delete ui;
 }
+
+void BrowseWindow::on_accountButton_clicked()
+{
+    if (this->accountType == AccountType::guest) {
+        this->hide();
+        this->thisParent->show();
+    }
+
+    else {
+        ProfileWindow* profileWindow = new ProfileWindow(this);
+        this->hide();
+        profileWindow->show();
+    }
+}
+

@@ -6,6 +6,9 @@ ProfileWindow::ProfileWindow(QWidget *parent) :
     ui(new Ui::ProfileWindow)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle("Foxlike Games");
+    this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
 }
 
 ProfileWindow::~ProfileWindow()

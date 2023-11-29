@@ -2,6 +2,7 @@
 #define PROFILEWINDOW_H
 
 #include <QMainWindow>
+//#include "Enums.h" Why an error occures there?
 
 namespace Ui {
 class ProfileWindow;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::ProfileWindow *ui;
+    //AccountType accountType;
 };
 
 #endif // PROFILEWINDOW_H

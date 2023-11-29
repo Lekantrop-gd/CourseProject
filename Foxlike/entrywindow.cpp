@@ -27,10 +27,9 @@ void EntryWindow::on_continueButton_clicked()
 
 }
 
-
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
-    BrowseWindow *browseWindow = new BrowseWindow(this, AccountType::guest);
+    BrowseWindow *browseWindow = new BrowseWindow(this, AccountType::user);
     browseWindow->show();
     this->hide();
 }

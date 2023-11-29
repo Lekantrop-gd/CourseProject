@@ -191,6 +191,9 @@ QPushButton:hover  {
        </item>
        <item>
         <widget class="QPushButton" name="accountButton">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="styleSheet">
           <string notr="true">background-color: transparent;</string>
          </property>
