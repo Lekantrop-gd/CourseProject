@@ -1,7 +1,7 @@
 #include "profilewindow.h"
 #include "ui_profilewindow.h"
 
-ProfileWindow::ProfileWindow(QWidget *parent) :
+ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ProfileWindow)
 {
@@ -9,6 +9,8 @@ ProfileWindow::ProfileWindow(QWidget *parent) :
 
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
+
+    this->user = user;
 }
 
 ProfileWindow::~ProfileWindow()

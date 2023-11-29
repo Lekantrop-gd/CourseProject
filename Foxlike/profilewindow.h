@@ -2,7 +2,7 @@
 #define PROFILEWINDOW_H
 
 #include <QMainWindow>
-//#include "Enums.h" Why an error occures there?
+#include "user.h"
 
 namespace Ui {
 class ProfileWindow;
@@ -13,12 +13,12 @@ class ProfileWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit ProfileWindow(QWidget *parent = nullptr);
+    explicit ProfileWindow(User* user, QWidget *parent = nullptr);
     ~ProfileWindow();
 
 private:
     Ui::ProfileWindow *ui;
-    //AccountType accountType;
+    User* user;
 };
 
 #endif // PROFILEWINDOW_H
