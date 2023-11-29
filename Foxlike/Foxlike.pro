@@ -12,17 +12,20 @@ SOURCES += \
     browsewindow.cpp \
     cardcreator.cpp \
     main.cpp \
-    entrywindow.cpp
+    entrywindow.cpp \
+    profilewindow.cpp
 
 HEADERS += \
     Enums.h \
     browsewindow.h \
     cardcreator.h \
-    entrywindow.h
+    entrywindow.h \
+    profilewindow.h
 
 FORMS += \
     browsewindow.ui \
-    entrywindow.ui
+    entrywindow.ui \
+    profilewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
