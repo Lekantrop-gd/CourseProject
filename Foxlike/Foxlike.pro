@@ -13,14 +13,16 @@ SOURCES += \
     cardcreator.cpp \
     main.cpp \
     entrywindow.cpp \
-    profilewindow.cpp
+    profilewindow.cpp \
+    user.cpp
 
 HEADERS += \
     Enums.h \
     browsewindow.h \
     cardcreator.h \
     entrywindow.h \
-    profilewindow.h
+    profilewindow.h \
+    user.h
 
 FORMS += \
     browsewindow.ui \
