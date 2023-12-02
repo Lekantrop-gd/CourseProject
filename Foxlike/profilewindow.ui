@@ -57,23 +57,6 @@ color: rgb(255, 255, 255)</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Поповнити баланс</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Баланс: 100$</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </item>
@@ -99,7 +82,7 @@ color: rgb(255, 255, 255)</string>
               <x>0</x>
               <y>0</y>
               <width>196</width>
-              <height>68</height>
+              <height>120</height>
              </rect>
             </property>
            </widget>

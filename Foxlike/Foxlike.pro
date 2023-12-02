@@ -17,6 +17,7 @@ SOURCES += \
     user.cpp
 
 HEADERS += \
+    Config.h \
     Enums.h \
     browsewindow.h \
     cardcreator.h \

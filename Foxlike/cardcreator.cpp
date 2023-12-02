@@ -1,28 +1,29 @@
 #include "cardcreator.h"
+#include "Config.h"
 
 CardCreator::CardCreator()
 {
 
 }
 
-QWidget* CardCreator::getGameCard(QString image, QString title, QString description, QString price)
+QWidget* CardCreator::getGameCard(QString pathToImage, QString title, QString description, QString price)
 {
     QWidget *cardWidget = new QWidget();
     cardWidget->setCursor(Qt::PointingHandCursor);
-    cardWidget->setMaximumSize(320, 240);
+    cardWidget->setMaximumSize(330, 270);
 
-    QPixmap gameImageResource(image);
+    QPixmap gameImageResource(pathToImage);
     QLabel *gameImage = new QLabel();
     gameImage->setPixmap(gameImageResource.scaled(320, 180));
 
     QLabel *gameTitle = new QLabel(title);
-    gameTitle->setStyleSheet("color: rgb(200, 200, 200); font-size: 15px");
+    gameTitle->setStyleSheet("color: " + mainTextColor + "; font-size: 15px");
 
     QLabel *gameDescription = new QLabel(description);
-    gameDescription->setStyleSheet("color: rgb(150, 150, 150)");
+    gameDescription->setStyleSheet("color: " + shadedTextColor + ";");
 
     QLabel *gamePrice = new QLabel(price);
-    gamePrice->setStyleSheet("color: rgb(200, 200, 200); font-size: 20px");
+    gamePrice->setStyleSheet("color: " + mainTextColor + "; font-size: 20px");
 
     QGridLayout *gridLayout = new QGridLayout(cardWidget);
 
@@ -32,6 +33,7 @@ QWidget* CardCreator::getGameCard(QString image, QString title, QString descript
     gridLayout->addWidget(gamePrice, 3, 0);
 
     cardWidget->setLayout(gridLayout);
+    cardWidget->setStyleSheet("QWidget:hover { border-radius: 10%; background-color: " + selectedBackgroundColor + "; }");
 
     return cardWidget;
 }

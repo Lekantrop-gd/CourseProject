@@ -4,7 +4,6 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QPixmap>
-#include <QSizePolicy>
 
 
 class CardCreator
