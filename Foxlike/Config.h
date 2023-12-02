@@ -3,7 +3,7 @@
 #include <QString>
 
 
-const QString pathToGamesImages = "gameBanners/";
+const QString pathToGamesBanners = "gamesBanners/";
 const QString pathToUIElements = "UIElements/";
 const QString backgroundColor = "rgb(18, 18, 18)";
 const QString selectedBackgroundColor = "rgb(25, 25, 25)";

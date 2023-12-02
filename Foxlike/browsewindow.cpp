@@ -21,7 +21,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не пер�
 
     for (int x = 0; x < 1; x++) {
         for (int y = 0; y < 3; y++) {
-            gameCards[counter] = cardCreator.getGameCard(pathToGamesImages + "TheWitcher3.png", "The Witcher", "The game of the world", "70 $");
+            gameCards[counter] = cardCreator.getGameCard(pathToGamesBanners + "TheWitcher3.png", "The Witcher", "The game of the world", "70 $");
             ui->GamesGrid->addWidget(gameCards[counter], x, y);
             counter++;
         }
@@ -29,7 +29,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не пер�
 
     for (int x = 1; x < 2; x++) {
         for (int y = 0; y < 3; y++) {
-            gameCards[counter] = cardCreator.getGameCard(pathToGamesImages + "TheWalkingDead.png", "The Walking Dead", "The game of the world", "30 $");
+            gameCards[counter] = cardCreator.getGameCard(pathToGamesBanners + "TheWalkingDead.png", "The Walking Dead", "The game of the world", "30 $");
             ui->GamesGrid->addWidget(gameCards[counter], x, y);
             counter++;
         }
