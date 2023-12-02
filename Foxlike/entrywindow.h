@@ -14,7 +14,7 @@ class EntryWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void userLoggedIn(QString name, QString balance, AccountType accountType);
+    void userLoggedIn(QString profilePhoto, QString nickname, AccountType accountType);
 
 public:
     EntryWindow(QWidget *parent = nullptr);

@@ -39,8 +39,8 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не пер�
     this->user = new User(entryWindow);
     this->profileWindow = new ProfileWindow(user);
 
-    connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::show);
-    connect(profileWindow, &ProfileWindow::close, this, &BrowseWindow::show);
+    connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
+    connect(profileWindow, &ProfileWindow::destroyed, this, &BrowseWindow::show);
 }
 
 BrowseWindow::~BrowseWindow()
@@ -57,4 +57,11 @@ void BrowseWindow::on_accountButton_clicked()
     else {
         this->entryWindow->show();
     }
+}
+
+void BrowseWindow::on_userLoggedIn()
+{
+    this->show();
+    delete this->profileWindow;
+    this->profileWindow = new ProfileWindow(user);
 }

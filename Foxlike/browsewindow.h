@@ -20,7 +20,7 @@ public:
 
 private slots:
     void on_accountButton_clicked();
-    void onAccountLoggedIn(AccountType accountType);
+    void on_userLoggedIn();
 
 private:
     Ui::BrowseWindow *ui;

@@ -11,10 +11,19 @@ AccountType User::getAccountType() const
     return accountType;
 }
 
-void User::onUserLoggedIn(QString login, QString balance, AccountType accountType)
+QString User::getProfilePhoto() const
 {
-    this->login = login;
-    this->balance = balance;
+    return profilePhoto;
+}
+
+QString User::getNickname() const
+{
+    return nickname;
+}
+
+void User::onUserLoggedIn(QString profilePhoto, QString nickname, AccountType accountType)
+{
+    this->profilePhoto = profilePhoto;
+    this->nickname = nickname;
     this->accountType = accountType;
-    qInfo() << login + " " + balance;
 }

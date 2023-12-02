@@ -23,7 +23,7 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    emit userLoggedIn("Sponge Bob", "100000$", AccountType::user);
+    emit userLoggedIn("Leon", "Leon228", AccountType::user);
     this->hide();
 }
 

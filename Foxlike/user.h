@@ -14,13 +14,18 @@ public:
 
     AccountType getAccountType() const;
 
+    QString getProfilePhoto() const;
+
+    QString getNickname() const;
+
 private:
-    QString login;
-    QString balance;
+    QString profilePhoto;
+    QString nickname;
     AccountType accountType = AccountType::guest;
+    //QVector<Game> games;
 
 private slots:
-    void onUserLoggedIn(QString login, QString balance, AccountType accountType);
+    void onUserLoggedIn(QString profilePhoto, QString nickname, AccountType accountType);
 };
 
 #endif // USER_H
