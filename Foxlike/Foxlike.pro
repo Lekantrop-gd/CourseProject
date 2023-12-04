@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     browsewindow.cpp \
     cardcreator.cpp \
+    gamewindow.cpp \
     main.cpp \
     entrywindow.cpp \
     profilewindow.cpp \
@@ -22,12 +23,14 @@ HEADERS += \
     browsewindow.h \
     cardcreator.h \
     entrywindow.h \
+    gamewindow.h \
     profilewindow.h \
     user.h
 
 FORMS += \
     browsewindow.ui \
     entrywindow.ui \
+    gamewindow.ui \
     profilewindow.ui
 
 # Default rules for deployment.
