@@ -2,6 +2,7 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include "game.h"
 
 namespace Ui {
 class GameWindow;
@@ -12,7 +13,7 @@ class GameWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(Game game, QWidget *parent = nullptr);
     ~GameWindow();
 
 private:

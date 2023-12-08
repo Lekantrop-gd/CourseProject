@@ -6,28 +6,28 @@ CardCreator::CardCreator()
 
 }
 
-QWidget* CardCreator::getGameCard(QString pathToImage, QString title, QString description, QString price)
+QWidget* CardCreator::getGameCard(Game game)
 {
     QWidget *cardWidget = new QWidget();
     cardWidget->setCursor(Qt::PointingHandCursor);
     cardWidget->setMaximumSize(330, 270);
 
-    QPixmap gameImageResource(pathToImage);
-    QLabel *gameImage = new QLabel();
-    gameImage->setPixmap(gameImageResource.scaled(320, 180));
+    QPixmap gameBannerResource(pathToGamesBanners + game.getBanner());
+    QLabel *gameBanner = new QLabel();
+    gameBanner->setPixmap(gameBannerResource.scaled(320, 180));
 
-    QLabel *gameTitle = new QLabel(title);
+    QLabel *gameTitle = new QLabel(game.getTitle());
     gameTitle->setStyleSheet("color: " + mainTextColor + "; font-size: 15px");
 
-    QLabel *gameDescription = new QLabel(description);
+    QLabel *gameDescription = new QLabel(game.getShortDescription());
     gameDescription->setStyleSheet("color: " + shadedTextColor + ";");
 
-    QLabel *gamePrice = new QLabel(price);
+    QLabel *gamePrice = new QLabel(QString::number(game.getPrice()) + "$");
     gamePrice->setStyleSheet("color: " + mainTextColor + "; font-size: 20px");
 
     QGridLayout *gridLayout = new QGridLayout(cardWidget);
 
-    gridLayout->addWidget(gameImage, 0, 0);
+    gridLayout->addWidget(gameBanner, 0, 0);
     gridLayout->addWidget(gameTitle, 1, 0);
     gridLayout->addWidget(gameDescription, 2, 0);
     gridLayout->addWidget(gamePrice, 3, 0);

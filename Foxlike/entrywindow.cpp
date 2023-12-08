@@ -29,6 +29,7 @@ void EntryWindow::on_continueButton_clicked()
 
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
+    emit userLoggedIn(NULL, NULL, AccountType::guest);
     this->hide();
 }
 

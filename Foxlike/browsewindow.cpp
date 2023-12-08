@@ -2,10 +2,11 @@
 #include "ui_browsewindow.h"
 #include "entrywindow.h"
 #include "cardcreator.h"
-#include "Config.h"
+#include "game.h"
 #include "gamewindow.h"
+#include <QVector>
 
-BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не перегружений відповідальностями цей конструктор
+BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
     QMainWindow(parent),
     ui(new Ui::BrowseWindow)
 {
@@ -16,21 +17,25 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не пер�
 
     CardCreator cardCreator;
 
+    Game game(1,
+              "The Witcher 3: Wild Hunt",
+              "The best game in the world",
+              "I'm too lazy to write a text this long.",
+              100,
+              "CDRP",
+              "CDPR Ineractive",
+              "01.01.2015",
+              "RPG",
+              "1",
+              "11",
+              "111");
+
     QWidget* gameCards[15];
 
     int counter = 0;
-
-    for (int x = 0; x < 1; x++) {
+    for (int x = 0; x < 2; x++) {
         for (int y = 0; y < 3; y++) {
-            gameCards[counter] = cardCreator.getGameCard(pathToGamesBanners + "TheWitcher3" + gameBannersExtension, "The Witcher", "The game of the world", "70 $");
-            ui->GamesGrid->addWidget(gameCards[counter], x, y);
-            counter++;
-        }
-    }
-
-    for (int x = 1; x < 2; x++) {
-        for (int y = 0; y < 3; y++) {
-            gameCards[counter] = cardCreator.getGameCard(pathToGamesBanners + "TheWalkingDead" + gameBannersExtension, "The Walking Dead", "The game of the world", "30 $");
+            gameCards[counter] = cardCreator.getGameCard(game);
             ui->GamesGrid->addWidget(gameCards[counter], x, y);
             counter++;
         }
@@ -43,9 +48,10 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Ask about DIP, чи не пер�
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
     connect(profileWindow, &ProfileWindow::destroyed, this, &BrowseWindow::show);
 
-    GameWindow* gameWindow = new GameWindow();
-    this->hide();
+    GameWindow *gameWindow = new GameWindow(game);
     gameWindow->show();
+
+    this->hide();
 }
 
 BrowseWindow::~BrowseWindow()

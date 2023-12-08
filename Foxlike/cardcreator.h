@@ -4,13 +4,13 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QPixmap>
-
+#include <game.h>
 
 class CardCreator
 {
 public:
     CardCreator();
-    QWidget* getGameCard(QString image, QString title, QString description, QString price);
+    QWidget* getGameCard(Game game);
 };
 
 #endif // CARDCREATOR_H
