@@ -62,88 +62,7 @@ color: rgb(255, 255, 255)</string>
           </item>
           <item>
            <widget class="QWidget" name="ImageSlideButtons" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="previousImageButton">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	color: rgb(150, 150, 150);
-	border: 1 px solid red;
-}
-
-QPushButton:hover {
-	color: rgb(255, 255, 255);
-	border: 1 px solid red;
-}
-</string>
-               </property>
-               <property name="text">
-                <string>&lt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="nextImageButton">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	color: rgb(150, 150, 150);
-	border: 1 px solid red;
-}
-
-QPushButton:hover {
-	color: rgb(255, 255, 255);
-	border: 1 px solid red;
-}
-</string>
-               </property>
-               <property name="text">
-                <string>&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+            <layout class="QHBoxLayout" name="horizontalLayout_2"/>
            </widget>
           </item>
           <item>
@@ -201,6 +120,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <property name="scaledContents">
              <bool>true</bool>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -211,8 +133,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <height>30</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Title</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -225,7 +155,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </size>
             </property>
             <property name="text">
-             <string>Developer:</string>
+             <string>Developer: </string>
             </property>
            </widget>
           </item>
@@ -238,7 +168,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </size>
             </property>
             <property name="text">
-             <string>Publisher:</string>
+             <string>Publisher: </string>
             </property>
            </widget>
           </item>
@@ -256,7 +186,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="platformsLabel">
+           <widget class="QLabel" name="genreLabel">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -264,7 +194,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </size>
             </property>
             <property name="text">
-             <string>Genre:</string>
+             <string>Genre: </string>
             </property>
            </widget>
           </item>
@@ -275,6 +205,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <width>0</width>
               <height>30</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
             </property>
             <property name="text">
              <string>0.00$</string>
@@ -305,7 +240,7 @@ QPushButton:hover {
 </string>
             </property>
             <property name="text">
-             <string>Купити</string>
+             <string>Purchase</string>
             </property>
            </widget>
           </item>

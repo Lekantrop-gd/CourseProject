@@ -143,7 +143,7 @@ QPushButton:hover  {
 }</string>
             </property>
             <property name="text">
-             <string>Усі ігри</string>
+             <string>All Games</string>
             </property>
            </widget>
           </item>
@@ -169,7 +169,7 @@ QPushButton:hover  {
 }</string>
             </property>
             <property name="text">
-             <string>Фільтр</string>
+             <string>Filtr</string>
             </property>
            </widget>
           </item>

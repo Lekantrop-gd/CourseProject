@@ -126,7 +126,7 @@
 }</string>
          </property>
          <property name="text">
-          <string>Вхід</string>
+          <string>Log in</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -173,7 +173,7 @@
           <string/>
          </property>
          <property name="placeholderText">
-          <string>Адреса електронної пошти</string>
+          <string>Nickname</string>
          </property>
         </widget>
        </item>
@@ -205,7 +205,7 @@ border: 1px solid rgb(104, 104, 104);</string>
           <enum>QLineEdit::Password</enum>
          </property>
          <property name="placeholderText">
-          <string>Пароль</string>
+          <string>Password</string>
          </property>
         </widget>
        </item>
@@ -254,7 +254,7 @@ QPushButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>Продовжити</string>
+          <string>Continue</string>
          </property>
         </widget>
        </item>
@@ -301,7 +301,7 @@ QPushButton:hover  {
 }</string>
          </property>
          <property name="text">
-          <string>Продовжити як гість</string>
+          <string>Continue as a guest</string>
          </property>
         </widget>
        </item>
