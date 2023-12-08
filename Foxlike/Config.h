@@ -12,6 +12,7 @@ const QString mainTextColor = "rgb(200, 200, 200)";
 const QString shadedTextColor = "rgb(150, 150, 150)";
 const QString profilePhotosExtension = ".jpg";
 const QString gameBannersExtension = ".jpg";
+const QString gameLogosExtension = ".png";
 
 
 #endif // CONFIG_H
