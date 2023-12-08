@@ -117,7 +117,7 @@
              <string notr="true"/>
             </property>
             <property name="placeholderText">
-             <string>🔎 Пошук</string>
+             <string>🔎 Search</string>
             </property>
            </widget>
           </item>
@@ -241,21 +241,67 @@ QPushButton:hover  {
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="widget_2" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="styleSheet">
+          <string notr="true">QWidget {
+	background-color: rgb(18, 18, 18)
+}
+
+ QScrollBar:vertical {
+    background: rgb(22, 22, 22);
+    width: 14px;
+	border-radius: 0px;
+ }
+
+QScrollBar::handle:vertical {	
+	background-color: rgb(28, 28, 28);
+	min-height: 30px;
+	border-radius: 7px;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::handle:vertical:hover{	
+	background-color: rgb(32, 32, 32);
+}
+QScrollBar::handle:vertical:pressed {	
+	background-color: rgb(32, 32, 32);
+}
+
+QScrollBar::add-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
+}</string>
          </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <layout class="QGridLayout" name="GamesGrid"/>
-          </item>
-         </layout>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1152</width>
+            <height>565</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <layout class="QGridLayout" name="GamesGrid"/>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
        <item>

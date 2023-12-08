@@ -33,16 +33,23 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     QWidget* gameCards[15];
 
     int counter = 0;
-    for (int x = 0; x < 2; x++) {
+    for (int x = 0; x < 6; x++) {
         for (int y = 0; y < 3; y++) {
-            gameCards[counter] = cardCreator.getGameCard(game);
-            ui->GamesGrid->addWidget(gameCards[counter], x, y);
+            gameCards[0] = cardCreator.getGameCard(game);
+            ui->GamesGrid->addWidget(gameCards[0], x, y);
             counter++;
         }
     }
 
+    QVector<Game> games;
+    games.push_back(game);
+    games.push_back(game);
+    games.push_back(game);
+    games.push_back(game);
+    games.push_back(game);
+
     this->entryWindow = new EntryWindow();
-    this->user = new User(entryWindow);
+    this->user = new User(games, entryWindow);
     this->profileWindow = new ProfileWindow(user);
 
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
@@ -50,6 +57,8 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
 
     GameWindow *gameWindow = new GameWindow(game);
     gameWindow->show();
+
+    ui->scrollArea->setMinimumSize(gameCards[0]->width() * 3 + 50, gameCards[0]->height() + 20);
 
     this->hide();
 }

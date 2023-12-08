@@ -14,8 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(32, 32, 32);
-color: rgb(255, 255, 255)</string>
+   <string notr="true">background-color: rgb(18, 18, 18);	
+color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -78,7 +78,65 @@ color: rgb(255, 255, 255)</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <layout class="QGridLayout" name="GamesGrid"/>
+        <widget class="QScrollArea" name="GamesScrollArea">
+         <property name="styleSheet">
+          <string notr="true"> QScrollBar:vertical {
+    background: rgb(22, 22, 22);
+    width: 14px;
+    margin: 15px 0 15px 0;
+	border-radius: 0px;
+ }
+
+QScrollBar::handle:vertical {	
+	background-color: rgb(28, 28, 28);
+	min-height: 30px;
+	border-radius: 7px;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::handle:vertical:hover{	
+	background-color: rgb(32, 32, 32);
+}
+QScrollBar::handle:vertical:pressed {	
+	background-color: rgb(32, 32, 32);
+}
+
+QScrollBar::add-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>200</width>
+            <height>108</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <layout class="QGridLayout" name="GamesGrid"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
        </item>
       </layout>
      </widget>
