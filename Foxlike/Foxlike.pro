@@ -12,7 +12,7 @@ SOURCES += \
     browsewindow.cpp \
     cardcreator.cpp \
     game.cpp \
-    gamecardwidget.cpp \
+    gamewindow.cpp \
     main.cpp \
     entrywindow.cpp \
     profilewindow.cpp \
@@ -25,13 +25,14 @@ HEADERS += \
     cardcreator.h \
     entrywindow.h \
     game.h \
-    gamecardwidget.h \
+    gamewindow.h \
     profilewindow.h \
     user.h
 
 FORMS += \
     browsewindow.ui \
     entrywindow.ui \
+    gamewindow.ui \
     profilewindow.ui
 
 # Default rules for deployment.

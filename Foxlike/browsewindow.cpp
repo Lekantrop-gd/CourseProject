@@ -4,7 +4,6 @@
 #include "cardcreator.h"
 #include "game.h"
 #include "gamewindow.h"
-#include "gamecardwidget.h"
 #include <QVector>
 
 BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
@@ -31,23 +30,23 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
               "11",
               "111");
 
+    QWidget* gameCards[15];
+
+    int counter = 0;
+    for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < 3; y++) {
+            gameCards[0] = cardCreator.getGameCard(game);
+            ui->GamesGrid->addWidget(gameCards[0], x, y);
+            counter++;
+        }
+    }
+
     QVector<Game> games;
     games.push_back(game);
     games.push_back(game);
     games.push_back(game);
     games.push_back(game);
     games.push_back(game);
-
-    QWidget* gameCards[15];
-
-    for (int x = 0; x < 6; x++) {
-        for (int y = 0; y < 3; y++) {
-            //gameCards[0] = cardCreator.getGameCard(game);
-            gameCards[0] = new GameCardWidget(game);
-            ui->GamesGrid->addWidget(gameCards[0], x, y);
-            connect(gameCards[0], &GameCardWidget::widgetClicked, this, &BrowseWindow::on_accountButton_clicked);
-        }
-    }
 
     this->entryWindow = new EntryWindow();
     this->user = new User(games, entryWindow);
@@ -56,7 +55,12 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
     connect(profileWindow, &ProfileWindow::destroyed, this, &BrowseWindow::show);
 
-    ui->GamesScrollArea->setMinimumSize(gameCards[0]->width() * 3 + 50, gameCards[0]->height() + 20);
+    GameWindow *gameWindow = new GameWindow(game);
+    gameWindow->show();
+
+    ui->scrollArea->setMinimumSize(gameCards[0]->width() * 3 + 50, gameCards[0]->height() + 20);
+
+    this->hide();
 }
 
 BrowseWindow::~BrowseWindow()
