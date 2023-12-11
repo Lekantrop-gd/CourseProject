@@ -12,6 +12,9 @@ class ProfileWindow : public QMainWindow
 {
     Q_OBJECT
 
+signals:
+    void hidden();
+
 public:
     explicit ProfileWindow(User* user, QWidget *parent = nullptr);
     ~ProfileWindow();
@@ -19,6 +22,9 @@ public:
 private:
     Ui::ProfileWindow *ui;
     User* user;
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // PROFILEWINDOW_H

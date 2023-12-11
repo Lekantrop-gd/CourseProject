@@ -2,6 +2,7 @@
 #include "ui_profilewindow.h"
 #include "Config.h"
 #include "cardcreator.h"
+#include <QCloseEvent>
 
 ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     QMainWindow(parent),
@@ -20,7 +21,7 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     ui->profilePhoto->setMinimumSize(200, 200);
 
     ui->GamesScrollArea->setMinimumSize(cardCreator.getGameCard(user->getGames()[0])->width() + 50,
-                                         cardCreator.getGameCard(user->getGames()[0])->height() + 20);
+                                        cardCreator.getGameCard(user->getGames()[0])->height() + 20);
 
     QWidget* gameCards[5];
 
@@ -34,4 +35,11 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
 ProfileWindow::~ProfileWindow()
 {
     delete ui;
+}
+
+void ProfileWindow::closeEvent(QCloseEvent *event)
+{
+    this->hide();
+    emit hidden();
+    event->accept();
 }

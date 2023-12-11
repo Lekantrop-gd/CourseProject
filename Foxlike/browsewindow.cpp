@@ -4,6 +4,7 @@
 #include "cardcreator.h"
 #include "game.h"
 #include "gamewindow.h"
+#include <QPushButton>
 #include <QVector>
 
 BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
@@ -30,17 +31,6 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
               "11",
               "111");
 
-    QWidget* gameCards[15];
-
-    int counter = 0;
-    for (int x = 0; x < 6; x++) {
-        for (int y = 0; y < 3; y++) {
-            gameCards[0] = cardCreator.getGameCard(game);
-            ui->GamesGrid->addWidget(gameCards[0], x, y);
-            counter++;
-        }
-    }
-
     QVector<Game> games;
     games.push_back(game);
     games.push_back(game);
@@ -48,19 +38,23 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     games.push_back(game);
     games.push_back(game);
 
+    QWidget* gameCards[15];
+
+    for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < 3; y++) {
+            gameCards[0] = cardCreator.getGameCard(game);
+            connect(gameCards[0], &QWidget::cursor, this, &BrowseWindow::on_accountButton_clicked);
+            ui->GamesGrid->addWidget(gameCards[0], x, y);
+        }
+    }
+
     this->entryWindow = new EntryWindow();
     this->user = new User(games, entryWindow);
     this->profileWindow = new ProfileWindow(user);
 
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
-    connect(profileWindow, &ProfileWindow::destroyed, this, &BrowseWindow::show);
-
-    GameWindow *gameWindow = new GameWindow(game);
-    gameWindow->show();
 
     ui->scrollArea->setMinimumSize(gameCards[0]->width() * 3 + 50, gameCards[0]->height() + 20);
-
-    this->hide();
 }
 
 BrowseWindow::~BrowseWindow()
@@ -81,7 +75,10 @@ void BrowseWindow::on_accountButton_clicked()
 
 void BrowseWindow::on_userLoggedIn()
 {
-    this->show();
     delete this->profileWindow;
     this->profileWindow = new ProfileWindow(user);
+
+    connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_userLoggedIn);
+
+    this->show();
 }
