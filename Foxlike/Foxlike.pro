@@ -11,7 +11,6 @@ CONFIG += c++17
 SOURCES += \
     GameCard.cpp \
     browsewindow.cpp \
-    cardcreator.cpp \
     game.cpp \
     gamewindow.cpp \
     main.cpp \
@@ -24,7 +23,6 @@ HEADERS += \
     Enums.h \
     GameCard.h \
     browsewindow.h \
-    cardcreator.h \
     entrywindow.h \
     game.h \
     gamewindow.h \

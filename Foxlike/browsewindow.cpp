@@ -1,7 +1,6 @@
 #include "browsewindow.h"
 #include "ui_browsewindow.h"
 #include "entrywindow.h"
-#include "cardcreator.h"
 #include "game.h"
 #include "gamewindow.h"
 #include <QPushButton>
@@ -14,8 +13,10 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
 {
     ui->setupUi(this);
 
+    //Repeats in every form class
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
+    //Should be remover
 
     Game game(1,
               "The Witcher 3: Wild Hunt",
@@ -37,12 +38,11 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     games.push_back(game);
     games.push_back(game);
 
-    CardCreator cardCreator;
     GameCard* gameCards[15];
 
     for (int x = 0; x < 6; x++) {
         for (int y = 0; y < 3; y++) {
-            gameCards[0] = cardCreator.getGameCard(game);
+            gameCards[0] = new GameCard(game);
             connect(gameCards[0], &GameCard::clicked, this, &BrowseWindow::createWindow);
             ui->GamesGrid->addWidget(gameCards[0], x, y);
         }

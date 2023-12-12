@@ -8,7 +8,6 @@ GameWindow::GameWindow(Game game, QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
-    ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
 
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
@@ -23,6 +22,7 @@ GameWindow::GameWindow(Game game, QWidget *parent) :
     ui->releaseDateLabel->setText(ui->releaseDateLabel->text() + game.getReleaseDate());
     ui->genreLabel->setText(ui->genreLabel->text() + game.getGenre());
     ui->priceLabel->setText(QString::number(game.getPrice()) + "$");
+    ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
 }
 
 GameWindow::~GameWindow()

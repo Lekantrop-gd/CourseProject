@@ -13,6 +13,7 @@ const QString shadedTextColor = "rgb(150, 150, 150)";
 const QString profilePhotosExtension = ".jpg";
 const QString gameBannersExtension = ".jpg";
 const QString gameLogosExtension = ".png";
+const int sizeOfGameCard[] = {330, 270};
 
 
 #endif // CONFIG_H
