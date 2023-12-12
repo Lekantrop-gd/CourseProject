@@ -1,6 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include "Config.h"
+#include <QMouseEvent>
 
 GameWindow::GameWindow(Game game, QWidget *parent) :
     QMainWindow(parent),
@@ -28,3 +29,10 @@ GameWindow::~GameWindow()
 {
     delete ui;
 }
+void GameWindow::closeEvent(QCloseEvent *event)
+{
+    this->hide();
+    emit hidden();
+    event->accept();
+}
+

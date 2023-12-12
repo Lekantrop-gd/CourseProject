@@ -28,6 +28,8 @@ private:
     EntryWindow* entryWindow;
     ProfileWindow* profileWindow;
     User* user;
+
+    void createWindow();
 };
 
 #endif // BROWSEWINDOW_H

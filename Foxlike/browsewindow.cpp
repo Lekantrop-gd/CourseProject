@@ -6,6 +6,7 @@
 #include "gamewindow.h"
 #include <QPushButton>
 #include <QVector>
+#include "GameCard.h"
 
 BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
     QMainWindow(parent),
@@ -15,8 +16,6 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
 
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
-
-    CardCreator cardCreator;
 
     Game game(1,
               "The Witcher 3: Wild Hunt",
@@ -38,12 +37,13 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     games.push_back(game);
     games.push_back(game);
 
-    QWidget* gameCards[15];
+    CardCreator cardCreator;
+    GameCard* gameCards[15];
 
     for (int x = 0; x < 6; x++) {
         for (int y = 0; y < 3; y++) {
             gameCards[0] = cardCreator.getGameCard(game);
-            connect(gameCards[0], &QWidget::cursor, this, &BrowseWindow::on_accountButton_clicked);
+            connect(gameCards[0], &GameCard::clicked, this, &BrowseWindow::createWindow);
             ui->GamesGrid->addWidget(gameCards[0], x, y);
         }
     }
@@ -81,4 +81,25 @@ void BrowseWindow::on_userLoggedIn()
     connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_userLoggedIn);
 
     this->show();
+}
+
+void BrowseWindow::createWindow()
+{
+    Game game(1,
+              "The Witcher 3: Wild Hunt",
+              "The best game in the world",
+              "I'm too lazy to write a text this long.",
+              100,
+              "CDRP",
+              "CDPR Ineractive",
+              "01.01.2015",
+              "RPG",
+              "1",
+              "11",
+              "111");
+
+    GameWindow *gameWindow = new GameWindow(game);
+    connect(gameWindow, &GameWindow::hidden, this, &BrowseWindow::on_userLoggedIn);
+    gameWindow->show();
+    this->hide();
 }

@@ -6,9 +6,9 @@ CardCreator::CardCreator()
 
 }
 
-QWidget* CardCreator::getGameCard(Game game)
+GameCard* CardCreator::getGameCard(Game game)
 {
-    QWidget *cardWidget = new QWidget();
+    GameCard *cardWidget = new GameCard(game);
     cardWidget->setCursor(Qt::PointingHandCursor);
     cardWidget->setMaximumSize(330, 270);
 

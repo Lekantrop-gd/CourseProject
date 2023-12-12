@@ -5,12 +5,13 @@
 #include <QGridLayout>
 #include <QPixmap>
 #include <game.h>
+#include "GameCard.h"
 
 class CardCreator
 {
 public:
     CardCreator();
-    QWidget* getGameCard(Game game);
+    GameCard* getGameCard(Game game);
 };
 
 #endif // CARDCREATOR_H
