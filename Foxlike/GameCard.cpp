@@ -30,11 +30,10 @@ GameCard::GameCard(Game game, QWidget *parent) : QWidget(parent), game(game)
     gridLayout->addWidget(gamePrice, 3, 0);
 
     this->setLayout(gridLayout);
-    this->setStyleSheet("QWidget:hover { border-radius: 10%; background-color: " + selectedBackgroundColor + "; }");
 }
 
 void GameCard::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    emit clicked();
+    emit clicked(this->game);
 }

@@ -18,9 +18,13 @@ public:
     explicit BrowseWindow(QWidget *parent = nullptr); //Чи не порушується тут ISP?
     ~BrowseWindow();
 
+public slots:
+    void on_subWindowClosed();
+
 private slots:
     void on_accountButton_clicked();
     void on_userLoggedIn();
+    void createGameWindow(Game game);
 
 private:
     Ui::BrowseWindow *ui;
@@ -29,7 +33,8 @@ private:
     ProfileWindow* profileWindow;
     User* user;
 
-    void createWindow();
+    QVector<Game> getGamesFromDBImmitation();
+    void refreshGames(QVector<Game> games);
 };
 
 #endif // BROWSEWINDOW_H

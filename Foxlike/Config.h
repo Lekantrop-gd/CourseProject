@@ -14,6 +14,7 @@ const QString profilePhotosExtension = ".jpg";
 const QString gameBannersExtension = ".jpg";
 const QString gameLogosExtension = ".png";
 const int sizeOfGameCard[] = {330, 270};
+const int gamesGridNumberOfColumns = 3;
 
 
 #endif // CONFIG_H
