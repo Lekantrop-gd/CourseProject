@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,17 +15,20 @@ SOURCES += \
     gamewindow.cpp \
     main.cpp \
     entrywindow.cpp \
+    mysqldbmanager.cpp \
     profilewindow.cpp \
     user.cpp
 
 HEADERS += \
     Config.h \
+    DBManager.h \
     Enums.h \
     GameCard.h \
     browsewindow.h \
     entrywindow.h \
     game.h \
     gamewindow.h \
+    mysqldbmanager.h \
     profilewindow.h \
     user.h
 
