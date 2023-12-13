@@ -5,6 +5,8 @@
 #include "entrywindow.h"
 #include "profilewindow.h"
 #include "user.h"
+#include "gamesdbmanager.h"
+#include "gamewindow.h"
 
 namespace Ui {
 class BrowseWindow;
@@ -26,15 +28,19 @@ private slots:
     void on_userLoggedIn();
     void createGameWindow(Game game);
 
+    void on_FilterButton_clicked();
+
 private:
     Ui::BrowseWindow *ui;
 
+    GamesDBManager *dbManager;
     EntryWindow* entryWindow;
     ProfileWindow* profileWindow;
     User* user;
+    GameWindow* gameWindow;
 
     QVector<Game> getGamesFromDBImmitation();
-    void refreshGames(QVector<Game> games);
+    void refreshGames();
 };
 
 #endif // BROWSEWINDOW_H

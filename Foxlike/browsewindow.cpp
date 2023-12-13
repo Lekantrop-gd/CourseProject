@@ -4,9 +4,9 @@
 #include "game.h"
 #include "GameCard.h"
 #include "Config.h"
-#include "gamewindow.h"
-#include <QPushButton>
+#include "gamesdbmanager.h"
 #include <QVector>
+#include <QSqlDatabase>
 
 BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
     QMainWindow(parent),
@@ -14,19 +14,20 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
 {
     ui->setupUi(this);
 
-    //Repeats in every form class
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
-    //Should be remover
 
-    QVector<Game> games = getGamesFromDBImmitation();
-    refreshGames(games);
+    this->dbManager = GamesDBManager::getInstance();
+    dbManager->connectToDataBase();
+
+    refreshGames();
 
     ui->scrollArea->setMinimumSize(sizeOfGameCard[0] * 3 + 50, sizeOfGameCard[1] + 20);
 
     this->entryWindow = new EntryWindow();
-    this->user = new User(games, entryWindow);
+    this->user = new User(this->dbManager->getAllGames(), entryWindow);
     this->profileWindow = new ProfileWindow(user);
+    this->gameWindow = nullptr;
 
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);    
 }
@@ -34,6 +35,39 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
 BrowseWindow::~BrowseWindow()
 {
     delete ui;
+}
+
+void BrowseWindow::refreshGames()
+{
+    QVector<Game> games = this->dbManager->getAllGames();
+
+    GameCard* gameCards[games.size()];
+
+    int counter = 0;
+    int x = 0;
+    int y = 0;
+
+    for (Game game : games) {
+        gameCards[counter] = new GameCard(games[counter]);
+        connect(gameCards[counter], &GameCard::clicked, this, &BrowseWindow::createGameWindow);
+
+        if (y >= gamesGridNumberOfColumns) { y = 0; x++; }
+
+        ui->GamesGrid->addWidget(gameCards[counter], x, y);
+
+        y++; counter++;
+    }
+}
+
+void BrowseWindow::createGameWindow(Game game)
+{
+    delete this->gameWindow;
+    this->gameWindow = new GameWindow(game);
+
+    connect(gameWindow, &GameWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
+
+    this->hide();
+    gameWindow->show();
 }
 
 void BrowseWindow::on_accountButton_clicked()
@@ -59,58 +93,12 @@ void BrowseWindow::on_userLoggedIn()
 
 void BrowseWindow::on_subWindowClosed()
 {
-    QVector<Game> games = getGamesFromDBImmitation();
-    refreshGames(games);
+    refreshGames();
     this->show();
 }
 
-QVector<Game> BrowseWindow::getGamesFromDBImmitation()
+void BrowseWindow::on_FilterButton_clicked()
 {
-    Game game(1,
-              "The Witcher 3: Wild Hunt",
-              "The best game in the world",
-              "I'm too lazy to write a text this long.",
-              100,
-              "CDRP",
-              "CDPR Ineractive",
-              "01.01.2015",
-              "RPG",
-              "1",
-              "11",
-              "111");
-
-    QVector<Game> games;
-    for (int x = 0; x < 100; x++) {
-        games.push_back(game);
-    }
-
-    return games;
+    refreshGames();
 }
 
-void BrowseWindow::refreshGames(QVector<Game> games)
-{
-    GameCard* gameCards[games.size()];
-
-    int counter = 0;
-    int x = 0;
-    int y = 0;
-
-    for (Game game : games) {
-        gameCards[counter] = new GameCard(games[counter]);
-        connect(gameCards[counter], &GameCard::clicked, this, &BrowseWindow::createGameWindow);
-
-        if (y >= gamesGridNumberOfColumns) { y = 0; x++; }
-
-        ui->GamesGrid->addWidget(gameCards[counter], x, y);
-
-        y++; counter++;
-    }
-}
-
-void BrowseWindow::createGameWindow(Game game)
-{
-    GameWindow* gameWindow = new GameWindow(game);
-    connect(gameWindow, &GameWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
-    this->hide();
-    gameWindow->show();
-}
