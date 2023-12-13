@@ -22,10 +22,10 @@ public:
     QVector<Game> getGames() const;
 
 private:
-    QString profilePhoto;
     QString nickname;
-    AccountType accountType = AccountType::guest;
+    QString profilePhoto;
     QVector<Game> games;
+    AccountType accountType = AccountType::guest;
 
 private slots:
     void onUserLoggedIn(QString profilePhoto, QString nickname, AccountType accountType);
