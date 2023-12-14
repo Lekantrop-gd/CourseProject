@@ -9,6 +9,9 @@ public:
     static GamesDBManager* getInstance();
 
     QVector<Game> getAllGames();
+    QVector<Game> getGames(QString keyWords);
+    QVector<Game> getGameByPriceLoweThan(int price);
+    Game getGame(int id);
 
     bool inserGameIntoTable(const Game& game);
 

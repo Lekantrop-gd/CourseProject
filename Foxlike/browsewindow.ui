@@ -143,7 +143,7 @@ QPushButton:hover  {
 }</string>
             </property>
             <property name="text">
-             <string>All Games</string>
+             <string>Filter</string>
             </property>
            </widget>
           </item>
@@ -169,7 +169,7 @@ QPushButton:hover  {
 }</string>
             </property>
             <property name="text">
-             <string>Filtr</string>
+             <string>All Games</string>
             </property>
            </widget>
           </item>
@@ -216,7 +216,123 @@ QPushButton:hover  {
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="FilterZone" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="4">
+        <widget class="QLabel" name="filterPriceLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255)</string>
+         </property>
+         <property name="text">
+          <string>Any price</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="4">
+        <widget class="QSlider" name="priceSlider">
+         <property name="styleSheet">
+          <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #333;
+    background: #222;
+    height: 10px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    background: rgb(32, 32, 32);
+    border: 0px;
+    width: 18px;
+	height: 18 px;
+	margin: -2px 0;
+    border-radius: 7px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #00695C;
+    border: 0px;
+    height: 1px;
+    border-radius: 5px;
+}
+
+QSlider::add-page:horizontal {
+    background: #333;
+    border: 0px;
+    height: 1px;
+    border-radius: 5px;
+}</string>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>100</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(18, 18, 18);
+color: rgb(255, 255, 255)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="5">
+        <widget class="QDateEdit" name="dateEdit">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(18, 18, 18);
+color: rgb(255, 255, 255)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="Body" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -293,7 +409,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
             <x>0</x>
             <y>0</y>
             <width>1152</width>
-            <height>565</height>
+            <height>490</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
