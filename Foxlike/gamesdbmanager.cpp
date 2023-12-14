@@ -70,7 +70,7 @@ QVector<Game> GamesDBManager::getAllGames()
 
     QVector<Game> games;
 
-    query.prepare("SELECT * FROM GAMES");
+    query.exec("SELECT * FROM GAMES");
 
     while (query.next()) {
         Game game(
@@ -92,103 +92,4 @@ QVector<Game> GamesDBManager::getAllGames()
     }
 
     return games;
-}
-
-QVector<Game> GamesDBManager::getGames(QString keyWords)
-{
-    QSqlQuery query;
-
-    QVector<Game> games;
-
-    query.prepare("SELECT * FROM GAMES WHERE (title LIKE :keyWords OR shortDescription LIKE :keyWords OR fullDescription LIKE :keyWords)");
-    query.bindValue(":keyWords", "%" + keyWords + "%");
-
-    if (!query.exec()) {
-        qDebug() << query.lastError().text();
-    }
-
-    while (query.next()) {
-        Game game(
-            query.value(0).toInt(),
-            query.value(1).toString(),
-            query.value(2).toString(),
-            query.value(3).toString(),
-            query.value(4).toFloat(),
-            query.value(5).toString(),
-            query.value(6).toString(),
-            query.value(7).toString(),
-            query.value(8).toString(),
-            query.value(9).toString(),
-            query.value(10).toString(),
-            query.value(11).toString()
-            );
-
-        games.push_back(game);
-    }
-
-    return games;
-}
-
-QVector<Game> GamesDBManager::getGameByPriceLoweThan(int price)
-{
-    QSqlQuery query;
-
-    QVector<Game> games;
-
-    query.prepare("SELECT * FROM GAMES WHERE (price < :price)");
-    query.bindValue(":price", "%" + QString::number(price) + "%");
-
-    if (!query.exec()) {
-        qDebug() << query.lastError().text();
-    }
-
-    while (query.next()) {
-        Game game(
-            query.value(0).toInt(),
-            query.value(1).toString(),
-            query.value(2).toString(),
-            query.value(3).toString(),
-            query.value(4).toFloat(),
-            query.value(5).toString(),
-            query.value(6).toString(),
-            query.value(7).toString(),
-            query.value(8).toString(),
-            query.value(9).toString(),
-            query.value(10).toString(),
-            query.value(11).toString()
-            );
-
-        games.push_back(game);
-    }
-
-    return games;
-}
-
-Game GamesDBManager::getGame(int id)
-{
-    QSqlQuery query;
-
-    query.prepare("SELECT * FROM GAMES WHERE id = :id");
-    query.bindValue(":id", id);
-
-    if (!query.exec()) {
-        qDebug() << query.lastError().text();
-    }
-
-    Game game(
-        query.value(0).toInt(),
-        query.value(1).toString(),
-        query.value(2).toString(),
-        query.value(3).toString(),
-        query.value(4).toFloat(),
-        query.value(5).toString(),
-        query.value(6).toString(),
-        query.value(7).toString(),
-        query.value(8).toString(),
-        query.value(9).toString(),
-        query.value(10).toString(),
-        query.value(11).toString()
-        );
-
-    return game;
 }

@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
-#include <QString>
-#include <QVector>
+#include<QString>
+#include<QVector>
 
 class Game
 {

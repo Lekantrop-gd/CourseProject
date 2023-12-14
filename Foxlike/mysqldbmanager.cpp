@@ -58,15 +58,14 @@ bool MySQLDBManager::createTables() {
                     "developer varchar[70] NOT NULL, "
                     "publisher varchar[70] NOT NULL, "
                     "releaseDate DATE NOT NULL, "
-                    "genre varchar[30] NOT NULL, "
-                    "banner varchar[80] NOT NULL, "
-                    "image varchar[80] NOT NULL, "
+                    "genre varchar[30] NOT NULL,"
+                    "banner varchar[80] NOT NULL,"
+                    "image varchar[80] NOT NULL,"
                     "icon varchar[80] NOT NULL"
                     ");"))
     {
         qDebug() << query.lastError().text();
         return false;
-    }
-
-    return true;
+    } else
+        return true;
 }
