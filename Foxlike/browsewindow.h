@@ -32,6 +32,12 @@ private slots:
 
     void on_filterButton_clicked();
 
+    void on_priceSlider_valueChanged(int value);
+
+    void on_browseButton_clicked();
+
+    void on_genreComboBox_textActivated(const QString &arg1);
+
 private:
     Ui::BrowseWindow *ui;
 

@@ -106,16 +106,51 @@ void BrowseWindow::on_subWindowClosed()
 
 void BrowseWindow::on_Search_textChanged(const QString &arg1)
 {
+    ui->filterButtons->hide();
     refreshGames(this->dbManager->getGamesByKeyWords(arg1));
 }
 
 void BrowseWindow::on_filterButton_clicked()
 {
     if (ui->filterButtons->isHidden()) {
+        ui->Search->setText("");
         ui->filterButtons->show();
     }
     else {
         ui->filterButtons->hide();
+    }
+}
+
+void BrowseWindow::on_priceSlider_valueChanged(int value)
+{
+    ui->genreComboBox->setCurrentIndex(0);
+
+    if (value == 100) {
+        ui->priceText->setText("Any price");
+        refreshGames(this->dbManager->getAllGames());
+    }
+    else {
+        ui->priceText->setText("Under " + QString::number(value));
+        refreshGames(this->dbManager->getGamesByPrice(value));
+    }
+
+}
+
+void BrowseWindow::on_browseButton_clicked()
+{
+    refreshGames(this->dbManager->getAllGames());
+}
+
+void BrowseWindow::on_genreComboBox_textActivated(const QString &arg1)
+{
+    ui->priceSlider->setSliderPosition(100);
+
+    if(arg1 == "None") {
+        refreshGames(this->dbManager->getAllGames());
+    }
+
+    else {
+        refreshGames(this->dbManager->getGamesByGenre(arg1));
     }
 }
 
