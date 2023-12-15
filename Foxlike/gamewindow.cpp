@@ -21,7 +21,7 @@ GameWindow::GameWindow(Game game, QWidget *parent) :
     ui->publisherLabel->setText(ui->publisherLabel->text() + game.getPublisher());
     ui->releaseDateLabel->setText(ui->releaseDateLabel->text() + game.getReleaseDate());
     ui->genreLabel->setText(ui->genreLabel->text() + game.getGenre());
-    ui->priceLabel->setText(QString::number(game.getPrice()) + "$");
+    ui->priceLabel->setText(QString::number(game.getPrice(), 'f', 2) + "$");
     ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
 }
 
