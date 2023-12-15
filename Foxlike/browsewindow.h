@@ -28,9 +28,9 @@ private slots:
     void on_userLoggedIn();
     void createGameWindow(Game game);
 
-    void on_FilterButton_clicked();
-
     void on_Search_textChanged(const QString &arg1);
+
+    void on_filterButton_clicked();
 
 private:
     Ui::BrowseWindow *ui;

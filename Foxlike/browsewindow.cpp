@@ -23,6 +23,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     refreshGames(this->dbManager->getAllGames());
 
     ui->scrollArea->setMinimumSize(sizeOfGameCard[0] * 3 + 50, sizeOfGameCard[1] + 20);
+    ui->filterButtons->hide();
 
     this->entryWindow = new EntryWindow();
     this->user = new User(this->dbManager->getAllGames(), entryWindow);
@@ -103,13 +104,18 @@ void BrowseWindow::on_subWindowClosed()
     this->show();
 }
 
-void BrowseWindow::on_FilterButton_clicked()
-{
-
-}
-
 void BrowseWindow::on_Search_textChanged(const QString &arg1)
 {
     refreshGames(this->dbManager->getGamesByKeyWords(arg1));
+}
+
+void BrowseWindow::on_filterButton_clicked()
+{
+    if (ui->filterButtons->isHidden()) {
+        ui->filterButtons->show();
+    }
+    else {
+        ui->filterButtons->hide();
+    }
 }
 

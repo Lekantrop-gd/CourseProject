@@ -122,33 +122,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="FilterButton">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton {
-	background-color: transparent;
-	color: rgb(150, 150, 150);
-}
-
-QPushButton:hover  {
-	background-color: transparent;
-	color: rgb(255, 255, 255);
-}</string>
-            </property>
-            <property name="text">
-             <string>Filter</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="BrowseButton">
+           <widget class="QPushButton" name="browseButton">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -170,6 +144,32 @@ QPushButton:hover  {
             </property>
             <property name="text">
              <string>All games</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="filterButton">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color: transparent;
+	color: rgb(150, 150, 150);
+}
+
+QPushButton:hover  {
+	background-color: transparent;
+	color: rgb(255, 255, 255);
+}</string>
+            </property>
+            <property name="text">
+             <string>Filter</string>
             </property>
            </widget>
           </item>
@@ -211,6 +211,66 @@ QPushButton:hover  {
           </size>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="filterButtons" native="true">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255)</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBox"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Any price</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -293,7 +353,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
             <x>0</x>
             <y>0</y>
             <width>1152</width>
-            <height>565</height>
+            <height>490</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
