@@ -8,7 +8,7 @@
 #include <QVector>
 #include <QSqlDatabase>
 
-BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружений відповідальностями цей конструктор
+BrowseWindow::BrowseWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BrowseWindow)
 {
@@ -20,7 +20,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) : //Чи не перегружени
     this->dbManager = GamesDBManager::getInstance();
     dbManager->connectToDataBase();
 
-    refreshGames();
+    refreshGames(this->dbManager->getAllGames());
 
     ui->scrollArea->setMinimumSize(sizeOfGameCard[0] * 3 + 50, sizeOfGameCard[1] + 20);
 
@@ -37,9 +37,15 @@ BrowseWindow::~BrowseWindow()
     delete ui;
 }
 
-void BrowseWindow::refreshGames()
+void BrowseWindow::refreshGames(QVector<Game> games)
 {
-    QVector<Game> games = this->dbManager->getAllGames();
+    QLayoutItem *item;
+    while ((item = ui->GamesGrid->takeAt(0)) != nullptr) {
+        if (QWidget *widget = item->widget()) {
+            delete widget;
+        }
+        delete item;
+    }
 
     GameCard* gameCards[games.size()];
 
@@ -93,12 +99,17 @@ void BrowseWindow::on_userLoggedIn()
 
 void BrowseWindow::on_subWindowClosed()
 {
-    refreshGames();
+    refreshGames(this->dbManager->getAllGames());
     this->show();
 }
 
 void BrowseWindow::on_FilterButton_clicked()
 {
-    refreshGames();
+
+}
+
+void BrowseWindow::on_Search_textChanged(const QString &arg1)
+{
+    refreshGames(this->dbManager->getGamesByKeyWords(arg1));
 }
 

@@ -30,6 +30,8 @@ private slots:
 
     void on_FilterButton_clicked();
 
+    void on_Search_textChanged(const QString &arg1);
+
 private:
     Ui::BrowseWindow *ui;
 
@@ -39,8 +41,7 @@ private:
     User* user;
     GameWindow* gameWindow;
 
-    QVector<Game> getGamesFromDBImmitation();
-    void refreshGames();
+    void refreshGames(QVector<Game> games);
 };
 
 #endif // BROWSEWINDOW_H

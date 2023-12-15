@@ -64,32 +64,72 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
     }
 }
 
+QVector<Game> GamesDBManager::prepareGames(QSqlQuery query)
+{
+    QVector<Game> games;
+
+    if (!query.exec()) {
+        qDebug() << query.lastError().text();
+    }
+    else {
+        while (query.next()) {
+            Game game(
+                query.value(0).toInt(),
+                query.value(1).toString(),
+                query.value(2).toString(),
+                query.value(3).toString(),
+                query.value(4).toFloat(),
+                query.value(5).toString(),
+                query.value(6).toString(),
+                query.value(7).toString(),
+                query.value(8).toString(),
+                query.value(9).toString(),
+                query.value(10).toString(),
+                query.value(11).toString()
+                );
+
+            games.push_back(game);
+        }
+    }
+
+    return games;
+}
+
 QVector<Game> GamesDBManager::getAllGames()
 {
     QSqlQuery query;
 
-    QVector<Game> games;
-
     query.exec("SELECT * FROM GAMES");
 
-    while (query.next()) {
-        Game game(
-            query.value(0).toInt(),
-            query.value(1).toString(),
-            query.value(2).toString(),
-            query.value(3).toString(),
-            query.value(4).toFloat(),
-            query.value(5).toString(),
-            query.value(6).toString(),
-            query.value(7).toString(),
-            query.value(8).toString(),
-            query.value(9).toString(),
-            query.value(10).toString(),
-            query.value(11).toString()
-            );
+    return prepareGames(std::move(query));
+}
 
-        games.push_back(game);
-    }
+QVector<Game> GamesDBManager::getGamesByKeyWords(QString keyWords)
+{
+    QSqlQuery query;
 
-    return games;
+    query.prepare("SELECT * FROM GAMES WHERE title LIKE :keyWords OR shortDescription LIKE :keyWords OR fullDescription LIKE :keyWords");
+    query.bindValue(":keyWords", "%" + keyWords + "%");
+
+    return prepareGames(std::move(query));
+}
+
+QVector<Game> GamesDBManager::getGamesByGenre(QString genre)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM GAMES WHERE genre LIKE :genre");
+    query.bindValue(":genre", "%" + genre + "%");
+
+    return prepareGames(std::move(query));
+}
+
+QVector<Game> GamesDBManager::getGamesByPrice(float maximumPrice)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM GAMES WHERE price < :price");
+    query.bindValue(":price", maximumPrice);
+
+    return prepareGames(std::move(query));
 }
