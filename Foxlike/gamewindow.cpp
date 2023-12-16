@@ -3,10 +3,12 @@
 #include "Config.h"
 #include <QMouseEvent>
 #include <QMessageBox>
+#include "gamesdbmanager.h"
 
 GameWindow::GameWindow(User* user, Game game, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameWindow),
+    game(game),
     user(user)
 {
     ui->setupUi(this);
@@ -61,11 +63,9 @@ void GameWindow::on_deleteGameButton_clicked()
         );
 
     if (reply == QMessageBox::Yes) {
+        GamesDBManager *dbManager = GamesDBManager::getInstance();
+        dbManager->deleteGame(this->game.getId());
         this->close();
-
-    } else {
-        // User clicked 'No' or closed the dialog, handle accordingly
-        // ...
     }
 }
 

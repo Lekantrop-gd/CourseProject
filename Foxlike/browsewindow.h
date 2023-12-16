@@ -25,7 +25,9 @@ public slots:
 
 private slots:
     void on_accountButton_clicked();
+
     void on_userLoggedIn();
+
     void createGameWindow(Game game);
 
     void on_Search_textChanged(const QString &arg1);

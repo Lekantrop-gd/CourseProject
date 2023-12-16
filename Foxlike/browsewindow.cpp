@@ -36,6 +36,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
 BrowseWindow::~BrowseWindow()
 {
     delete ui;
+    //Should I delete anything here?
 }
 
 void BrowseWindow::refreshGames(QVector<Game> games)

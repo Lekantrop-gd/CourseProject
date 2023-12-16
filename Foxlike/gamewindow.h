@@ -30,6 +30,7 @@ private:
 
     void closeEvent(QCloseEvent *event) override;
 
+    Game game;
     User* user;
 };
 

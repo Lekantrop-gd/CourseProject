@@ -16,6 +16,7 @@ public:
     QVector<Game> getGamesByPrice(float maximumPrice);
 
     bool inserGameIntoTable(const Game& game);
+    void deleteGame(int gameId);
 
 private:
     static GamesDBManager* instance;

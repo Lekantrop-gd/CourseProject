@@ -55,6 +55,11 @@ QString Game::getGenre() const
     return genre;
 }
 
+int Game::getId() const
+{
+    return id;
+}
+
 Game::Game(int id, const QString &title, const QString &shortDescription, const QString &fullDescription, float price, const QString &developer, const QString &publisher, const QString &releaseDate, const QString &genre, const QString &banner, const QString &image, const QString &icon) : id(id),
     title(title),
     shortDescription(shortDescription),

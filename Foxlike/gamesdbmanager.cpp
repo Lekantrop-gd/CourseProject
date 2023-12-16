@@ -64,6 +64,18 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
     }
 }
 
+void GamesDBManager::deleteGame(int gameId)
+{
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM Games WHERE id = :id");
+    query.bindValue(":id", gameId);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError().text();
+    }
+}
+
 QVector<Game> GamesDBManager::prepareGames(QSqlQuery query)
 {
     QVector<Game> games;

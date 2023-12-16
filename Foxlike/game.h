@@ -30,6 +30,8 @@ public:
 
     QString getGenre() const;
 
+    int getId() const;
+
 private:
     int id;
     QString title;
