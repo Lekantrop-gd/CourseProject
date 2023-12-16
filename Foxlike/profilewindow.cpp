@@ -2,6 +2,7 @@
 #include "ui_profilewindow.h"
 #include "Config.h"
 #include "GameCard.h"
+#include "gameaddingwindow.h"
 #include <QCloseEvent>
 
 ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
@@ -23,6 +24,10 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
 
     ui->nicknameLabel->setText(this->user->getNickname());
 
+    if (this->user->getAccountType() != AccountType::developer) {
+        ui->addGameButton->hide();
+    }
+
     for (int x = 0; x < user->getGames().length(); x++) {
         GameCard *gameCardWidget = new GameCard(user->getGames()[0]);
         ui->GamesGrid->addWidget(gameCardWidget, x, 0);
@@ -40,3 +45,11 @@ void ProfileWindow::closeEvent(QCloseEvent *event)
     emit hidden();
     event->accept();
 }
+
+void ProfileWindow::on_addGameButton_clicked()
+{
+    GameAddingWindow *gameAddingWindow = new GameAddingWindow();
+    this->hide();
+    gameAddingWindow->show();
+}
+

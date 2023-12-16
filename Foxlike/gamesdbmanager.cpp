@@ -42,7 +42,7 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
                   ":image, "
                   ":icon)");
 
-    query.bindValue(":id", 0);
+    query.bindValue(":id", game.getId());
     query.bindValue(":title", game.getTitle());
     query.bindValue(":shortDescription", game.getShortDescription());
     query.bindValue(":fullDescription", game.getFullDescription());
@@ -74,6 +74,16 @@ void GamesDBManager::deleteGame(int gameId)
     if (!query.exec()) {
         qDebug() << query.lastError().text();
     }
+}
+
+int GamesDBManager::getLastGameId()
+{
+    QSqlQuery query;
+
+    query.exec("SELECT MAX(id) FROM Games");
+    query.next();
+
+    return query.value(0).toInt();
 }
 
 QVector<Game> GamesDBManager::prepareGames(QSqlQuery query)

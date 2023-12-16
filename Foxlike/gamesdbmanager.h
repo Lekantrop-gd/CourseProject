@@ -17,6 +17,7 @@ public:
 
     bool inserGameIntoTable(const Game& game);
     void deleteGame(int gameId);
+    int getLastGameId();
 
 private:
     static GamesDBManager* instance;

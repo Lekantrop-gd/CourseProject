@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GameAddingWindow</class>
+ <widget class="QMainWindow" name="GameAddingWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>941</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(18, 18, 18)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255)</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QWidget" name="contenArea" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(20, 20, 20)</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="bannerButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	height: 30px;
+	background-color: rgb(25, 25, 25);
+	border-radius: 10%;
+}
+
+QPushButton:hover {
+	background-color: rgb(28, 28, 28);
+	border-radius: 5%;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Choose banner (1920x1080)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="bannerHandler">
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>144</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/gamesBanners/Example.jpg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="imageButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	height: 30px;
+	background-color: rgb(25, 25, 25);
+	border-radius: 10%;
+}
+
+QPushButton:hover {
+	background-color: rgb(28, 28, 28);
+	border-radius: 5%;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Choose image (1920x1080)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="imageHabdler">
+            <property name="maximumSize">
+             <size>
+              <width>512</width>
+              <height>288</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/gamesBanners/Example.jpg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="shortDescriptionLabel">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Short description (80 characters):</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="shortDescriptionInput">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="fullDescriptionLabel">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Full description:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPlainTextEdit" name="fullDescriptionInput">
+            <property name="styleSheet">
+             <string notr="true"> QScrollBar:vertical {
+    background: rgb(22, 22, 22);
+    width: 14px;
+	border-radius: 0px;
+ }
+
+QScrollBar::handle:vertical {	
+	background-color: rgb(28, 28, 28);
+	min-height: 30px;
+	border-radius: 7px;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::handle:vertical:hover{	
+	background-color: rgb(32, 32, 32);
+}
+QScrollBar::handle:vertical:pressed {	
+	background-color: rgb(32, 32, 32);
+}
+
+QScrollBar::add-line:vertical {
+	height: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="logoButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	height: 30px;
+	background-color: rgb(25, 25, 25);
+	border-radius: 10%;
+}
+
+QPushButton:hover {
+	background-color: rgb(28, 28, 28);
+	border-radius: 5%;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Choose game logo (500x500)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="logoHandler">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/profilesImages/Example.jpg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="titleInput">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Game title</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="developerInput">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Developer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="publisherInput">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Publisher</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="releaseDateLabel">
+            <property name="text">
+             <string>Release date (mm.dd.yyyy):</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="releaseDateInput">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="displayFormat">
+             <string>MM.dd.yyyy</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="genreInput">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Genre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="priceInput">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+	background-color: rgb(32, 32, 32);
+	border-radius: 5%;
+	color: rgb(200, 200, 200);
+	height: 25px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Price</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="publishGameButton">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	height: 30px;
+	background-color: rgb(25, 25, 25);
+	border-radius: 10%;
+}
+
+QPushButton:hover {
+	background-color: rgb(28, 28, 28);
+	border-radius: 5%;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Publish the game</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

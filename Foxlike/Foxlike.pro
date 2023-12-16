@@ -12,6 +12,7 @@ SOURCES += \
     GameCard.cpp \
     browsewindow.cpp \
     game.cpp \
+    gameaddingwindow.cpp \
     gamesdbmanager.cpp \
     gamewindow.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     browsewindow.h \
     entrywindow.h \
     game.h \
+    gameaddingwindow.h \
     gamesdbmanager.h \
     gamewindow.h \
     mysqldbmanager.h \
@@ -37,6 +39,7 @@ HEADERS += \
 FORMS += \
     browsewindow.ui \
     entrywindow.ui \
+    gameaddingwindow.ui \
     gamewindow.ui \
     profilewindow.ui
 

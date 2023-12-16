@@ -61,11 +61,6 @@ color: rgb(255, 255, 255)</string>
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="ImageSlideButtons" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_2"/>
-           </widget>
-          </item>
-          <item>
            <widget class="QTextBrowser" name="descriptionTextBrowser">
             <property name="styleSheet">
              <string notr="true"> QScrollBar:vertical {

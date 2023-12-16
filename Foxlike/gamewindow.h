@@ -17,7 +17,7 @@ signals:
     void hidden();
 
 public:
-    explicit GameWindow(User* user, Game game, QWidget *parent = nullptr);
+    explicit GameWindow(Game game, User* user = nullptr, QWidget *parent = nullptr);
     ~GameWindow();
 
 private slots:
