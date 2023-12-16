@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "game.h"
+#include "user.h"
 
 namespace Ui {
 class GameWindow;
@@ -16,13 +17,20 @@ signals:
     void hidden();
 
 public:
-    explicit GameWindow(Game game, QWidget *parent = nullptr);
+    explicit GameWindow(User* user, Game game, QWidget *parent = nullptr);
     ~GameWindow();
+
+private slots:
+    void on_purchaseButton_clicked();
+
+    void on_deleteGameButton_clicked();
 
 private:
     Ui::GameWindow *ui;
 
     void closeEvent(QCloseEvent *event) override;
+
+    User* user;
 };
 
 #endif // GAMEWINDOW_H

@@ -2,10 +2,12 @@
 #include "ui_gamewindow.h"
 #include "Config.h"
 #include <QMouseEvent>
+#include <QMessageBox>
 
-GameWindow::GameWindow(Game game, QWidget *parent) :
+GameWindow::GameWindow(User* user, Game game, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    user(user)
 {
     ui->setupUi(this);
 
@@ -23,16 +25,47 @@ GameWindow::GameWindow(Game game, QWidget *parent) :
     ui->genreLabel->setText(ui->genreLabel->text() + game.getGenre());
     ui->priceLabel->setText(QString::number(game.getPrice(), 'f', 2) + "$");
     ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
+
+    if (user->getAccountType() != AccountType::admin) {
+        ui->deleteGameButton->hide();
+    }
 }
 
 GameWindow::~GameWindow()
 {
     delete ui;
 }
+
 void GameWindow::closeEvent(QCloseEvent *event)
 {
     this->hide();
     emit hidden();
     event->accept();
+}
+
+void GameWindow::on_purchaseButton_clicked()
+{
+    if (user->getAccountType() == AccountType::guest) {
+        QMessageBox::critical(this, "Purchase error", "Unable to make a purchase. Log in first.");
+    }
+}
+
+void GameWindow::on_deleteGameButton_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(
+        this,
+        "Confirmation",
+        "Are you sure you want to delete this game?",
+        QMessageBox::Yes | QMessageBox::No
+        );
+
+    if (reply == QMessageBox::Yes) {
+        this->close();
+
+    } else {
+        // User clicked 'No' or closed the dialog, handle accordingly
+        // ...
+    }
 }
 

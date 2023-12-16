@@ -69,7 +69,7 @@ void BrowseWindow::refreshGames(QVector<Game> games)
 void BrowseWindow::createGameWindow(Game game)
 {
     delete this->gameWindow;
-    this->gameWindow = new GameWindow(game);
+    this->gameWindow = new GameWindow(this->user, game);
 
     connect(gameWindow, &GameWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
 
@@ -145,7 +145,7 @@ void BrowseWindow::on_genreComboBox_textActivated(const QString &arg1)
 {
     ui->priceSlider->setSliderPosition(100);
 
-    if(arg1 == "None") {
+    if (arg1 == "None") {
         refreshGames(this->dbManager->getAllGames());
     }
 
@@ -153,4 +153,3 @@ void BrowseWindow::on_genreComboBox_textActivated(const QString &arg1)
         refreshGames(this->dbManager->getGamesByGenre(arg1));
     }
 }
-

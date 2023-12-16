@@ -17,7 +17,7 @@ class BrowseWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BrowseWindow(QWidget *parent = nullptr); //Чи не порушується тут ISP?
+    explicit BrowseWindow(QWidget *parent = nullptr);
     ~BrowseWindow();
 
 public slots:
