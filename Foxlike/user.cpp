@@ -45,7 +45,7 @@ User::User(User *user)
 User::User()
 {
     this->id = 0;
-    this->nickname = NULL;
-    this->profilePhoto = NULL;
+    this->nickname = "";
+    this->profilePhoto = "";
     this->accountType = AccountType::guest;
 }

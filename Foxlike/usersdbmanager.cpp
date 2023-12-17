@@ -15,8 +15,6 @@ UsersDBManager* UsersDBManager::getInstance() {
 
 User* UsersDBManager::fetchUser(QString nickname, QString password)
 {
-    qDebug() << QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex());
-
     QSqlQuery query;
 
     query.prepare("SELECT * FROM Users WHERE nickname = :nickname");

@@ -1,7 +1,9 @@
 #include "entrywindow.h"
 #include "ui_entrywindow.h"
+#include "usersdbmanager.h"
 #include <QPixmap>
 #include <QIcon>
+#include <QMessageBox>
 
 EntryWindow::EntryWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,8 +16,6 @@ EntryWindow::EntryWindow(QWidget *parent)
 
     QPixmap logoImage("../UI/Resources/Logo.png");
     ui->logo->setPixmap(logoImage.scaled(150, 150, Qt::KeepAspectRatio));
-
-    this->usersDBManager = UsersDBManager::getInstance();
 }
 
 EntryWindow::~EntryWindow()
@@ -25,23 +25,36 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    if (this->usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text()) == nullptr) {
-        emit userLoggedIn(nullptr);
-    }
-    else {
-        emit userLoggedIn(this->usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text()));
+    if (ui->nicknameInput->text() != "" && ui->passwordInput->text() != "") {
+        UsersDBManager *usersDBManager = UsersDBManager::getInstance();
+
+        User* user = usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text());
+        if (user != nullptr) {
+            emit userLoggedIn(user);
+
+            this->hide();
+
+            ui->nicknameInput->clear();
+            ui->passwordInput->clear();
+        }
+
+        else {
+            QMessageBox::warning(this, "Warning!", "Nickname or password is wrong!");
+        }
     }
 
-    this->hide();
-    ui->nicknameInput->clear();
-    ui->passwordInput->clear();
+    else {
+        QMessageBox::warning(this, "Warning!", "You forgot about nickname or password.");
+    }
 }
 
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
-    emit userLoggedIn(nullptr);
+    User user;
+    emit userLoggedIn(&user);
 
     this->hide();
+
     ui->nicknameInput->clear();
     ui->passwordInput->clear();
 }

@@ -2,6 +2,7 @@
 #include "ui_profilewindow.h"
 #include "Config.h"
 #include "GameCard.h"
+#include "purchasedgamesdbmanager.h"
 #include <QCloseEvent>
 
 ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
@@ -13,25 +14,27 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
 
-    this->user = user;
+    if (user != nullptr) {
+        ui->nicknameLabel->setText(user->getNickname());
 
-    ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + this->user->getProfilePhoto() + profilePhotosExtension));
-    ui->profilePhoto->setMinimumSize(200, 200);
+        ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + user->getProfilePhoto() + profilePhotosExtension));
+        ui->profilePhoto->setMinimumSize(200, 200);
 
-    ui->GamesScrollArea->setMinimumSize(sizeOfGameCard[0] + 50, sizeOfGameCard[1] + 20);
+        if (user->getAccountType() != AccountType::developer) {
+            ui->addGameButton->hide();
+        }
 
-    ui->nicknameLabel->setText(this->user->getNickname());
+        ui->GamesScrollArea->setMinimumSize(sizeOfGameCard[0] + 50, sizeOfGameCard[1] + 20);
 
-    if (this->user->getAccountType() != AccountType::developer) {
-        ui->addGameButton->hide();
-    }
+        PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
 
-    if (this->user->getAccountType() != AccountType::guest) {
-        int counter = 0;
-        for (Game game : user->getGames()) {
-            GameCard *gameCardWidget = new GameCard(game);
-            ui->GamesGrid->addWidget(gameCardWidget, counter, 0);
-            counter++;
+        if (user->getAccountType() != AccountType::guest) {
+            int counter = 0;
+            for (Game game : purchasedGamesDBManager->getGamesOfUserById(user->getId())) {
+                GameCard *gameCardWidget = new GameCard(game);
+                ui->GamesGrid->addWidget(gameCardWidget, counter, 0);
+                counter++;
+            }
         }
     }
 }

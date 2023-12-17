@@ -155,3 +155,13 @@ QVector<Game> GamesDBManager::getGamesByPrice(float maximumPrice)
 
     return prepareGames(std::move(query));
 }
+
+Game GamesDBManager::getGameById(int id)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM GAMES WHERE id = :id");
+    query.bindValue(":id", id);
+
+    return prepareGames(std::move(query))[0];
+}

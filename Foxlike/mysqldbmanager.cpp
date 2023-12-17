@@ -7,6 +7,15 @@
 #include <QDebug>
 #include <QSqlTableModel>
 
+MySQLDBManager* MySQLDBManager::instance = nullptr;
+
+MySQLDBManager* MySQLDBManager::getInstance() {
+    if (instance == nullptr) {
+        instance = new MySQLDBManager();
+    }
+    return instance;
+}
+
 MySQLDBManager::MySQLDBManager() {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("127.0.0.1");
@@ -65,7 +74,6 @@ bool MySQLDBManager::createTables() {
                     ");"))
     {
         qDebug() << query.lastError().text();
-        return false;
     }
 
     if (!query.exec("CREATE TABLE Users("
@@ -78,7 +86,16 @@ bool MySQLDBManager::createTables() {
                     ")"))
     {
         qDebug() << query.lastError().text();
-        return false;
     }
+
+    if (!query.exec("CREATE TABLE PurchasedGames("
+                    "userId INT REFERENCES Users(id), "
+                    "gameId INT REFERENCES Games(id), "
+                    "status varchar[11] CHECK(status IN('confirmed', 'unconfirmed')) NOT NULL DEFAULT 'unconfirmed'"
+                    ")"))
+    {
+        qDebug() << query.lastError().text();
+    }
+
     return true;
 }

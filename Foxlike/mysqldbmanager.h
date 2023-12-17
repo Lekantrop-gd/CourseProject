@@ -8,19 +8,25 @@
 class MySQLDBManager : public DBManager {
 
 public:
-    void connectToDataBase() override;
+    static MySQLDBManager* getInstance();
 
-    bool createTables();
+    virtual void connectToDataBase();
+
+    virtual bool createTables();
 
 protected:
-    QSqlDatabase db;
-    const QString dataBaseName = "database.db";
-
     MySQLDBManager();
 
-    bool openDataBase();
-    bool restoreDataBase();
-    void closeDataBase();
+    QSqlDatabase db;
+
+    static MySQLDBManager* instance;
+
+private:
+    const QString dataBaseName = "database.db";
+
+    bool openDataBase() override;
+    bool restoreDataBase() override;
+    void closeDataBase() override;
 };
 
 #endif // MYSQLDBMANAGER_H

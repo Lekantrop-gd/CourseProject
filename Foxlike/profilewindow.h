@@ -25,13 +25,13 @@ protected:
 
 private:
     Ui::ProfileWindow *ui;
-    User* user;
     GameAddingWindow* gameAddingWindow;
 
 private slots:
     void on_gameAdded();
 
     void on_addGameButton_clicked();
+
     void on_logOutButton_clicked();
 };
 

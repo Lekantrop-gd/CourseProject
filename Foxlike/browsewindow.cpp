@@ -5,6 +5,7 @@
 #include "GameCard.h"
 #include "Config.h"
 #include "gamesdbmanager.h"
+#include "mysqldbmanager.h"
 #include <QVector>
 #include <QSqlDatabase>
 
@@ -17,8 +18,11 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
 
+    MySQLDBManager *mySQLDBManager = MySQLDBManager::getInstance();
+    mySQLDBManager->connectToDataBase();
+    mySQLDBManager->createTables();
+
     this->dbManager = GamesDBManager::getInstance();
-    dbManager->connectToDataBase();
 
     refreshGames(this->dbManager->getAllGames());
 
@@ -27,7 +31,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
 
     this->entryWindow = new EntryWindow();
     this->user = new User();
-    this->profileWindow = new ProfileWindow(user);
+    this->profileWindow = new ProfileWindow(nullptr);
     this->gameWindow = nullptr;
 
     connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);    
@@ -91,16 +95,16 @@ void BrowseWindow::on_accountButton_clicked()
 
 void BrowseWindow::on_userLoggedIn(User* user)
 {
+    delete this->profileWindow;
     delete this->user;
-    if (user == nullptr) {
-        this->user = new User();
+
+    if (user != nullptr) {
+        this->user = new User(user);
+        this->profileWindow = new ProfileWindow(this->user);
     }
     else {
-        this->user = new User(user);
+        this->profileWindow = new ProfileWindow(nullptr);
     }
-
-    delete this->profileWindow;
-    this->profileWindow = new ProfileWindow(this->user);
 
     connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
     connect(profileWindow, &ProfileWindow::loggedOut, this, &BrowseWindow::on_userLoggedOut);
@@ -117,6 +121,7 @@ void BrowseWindow::on_userLoggedOut()
 void BrowseWindow::on_subWindowClosed()
 {
     refreshGames(this->dbManager->getAllGames());
+
     this->show();
 }
 

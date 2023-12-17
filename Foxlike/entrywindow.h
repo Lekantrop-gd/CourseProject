@@ -2,7 +2,6 @@
 #define ENTRYWINDOW_H
 #include <QMainWindow>
 #include "user.h"
-#include "usersdbmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EntryWindow; }
@@ -26,6 +25,5 @@ private slots:
 
 private:
     Ui::EntryWindow *ui;
-    UsersDBManager *usersDBManager;
 };
 #endif // ENTRYWINDOW_H

@@ -3,7 +3,7 @@
 #include "mysqldbmanager.h"
 #include "user.h"
 
-class UsersDBManager : public MySQLDBManager
+class UsersDBManager// : public MySQLDBManager
 {
 public:
     static UsersDBManager* getInstance();
@@ -11,8 +11,13 @@ public:
     User* fetchUser(QString nickname, QString password);
 
 private:
+    UsersDBManager() = default;
+
     static UsersDBManager* instance;
 
+    //virtual void connectToDataBase();
+
+    //virtual bool createTables();
 };
 
 #endif // USERSDBMANAGER_H

@@ -4,7 +4,9 @@
 
 class DBManager {
 public:
-    virtual void connectToDataBase() = 0;
+    virtual bool openDataBase() = 0;
+    virtual bool restoreDataBase() = 0;
+    virtual void closeDataBase() = 0;
 };
 
 #endif // DBMANAGER_H
