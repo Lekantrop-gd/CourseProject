@@ -5,6 +5,7 @@
 #include "gamesdbmanager.h"
 #include <QFileDialog>
 #include <QDebug>
+#include <QCloseEvent>
 
 GameAddingWindow::GameAddingWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,4 +71,10 @@ void GameAddingWindow::on_publishGameButton_clicked()
 
     dbManager->inserGameIntoTable(game);
     emit gameAdded();
+}
+
+void GameAddingWindow::closeEvent(QCloseEvent *event)
+{
+    emit hidden();
+    event->accept();
 }

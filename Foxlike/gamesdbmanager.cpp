@@ -163,5 +163,8 @@ Game GamesDBManager::getGameById(int id)
     query.prepare("SELECT * FROM GAMES WHERE id = :id");
     query.bindValue(":id", id);
 
-    return prepareGames(std::move(query))[0];
+    QVector<Game> games = prepareGames(std::move(query));
+
+    if (games.size() != 0)
+        return games[0];
 }

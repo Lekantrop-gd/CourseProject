@@ -1,5 +1,5 @@
 #include "usersdbmanager.h"
-#include "gamesdbmanager.h"
+#include "purchasedgamesdbmanager.h"
 #include <QSqlQuery>
 #include <QCryptographicHash>
 
@@ -17,13 +17,13 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Users WHERE nickname = :nickname");
+    query.prepare("SELECT id, nickname, password, profilePhoto, accountType FROM Users WHERE nickname = :nickname");
     query.bindValue(":nickname", nickname);
 
     if (query.exec()) {
         if (query.next()) {
             if (query.value(2).toString() == QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex())) {
-                GamesDBManager *gamesDBManager = GamesDBManager::getInstance();
+                PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
                 AccountType accountType;
 
                 if (query.value(4).toString() == "user") accountType = AccountType::guest;
@@ -34,19 +34,15 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
                 User *user = new User(
                     query.value(0).toInt(),
                     query.value(1).toString(),
-                    query.value(2).toString(),
-                    gamesDBManager->getAllGames(),
+                    query.value(3).toString(),
+                    purchasedGamesDBManager->getGamesOfUserById(query.value(0).toInt()),
                     accountType);
 
                 return user;
             }
-            else {
-                //Wrong password
-            }
         }
     }
 
-    //There is no user with that nickname
     return nullptr;
 }
 

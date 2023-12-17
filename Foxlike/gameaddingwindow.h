@@ -13,6 +13,7 @@ class GameAddingWindow : public QMainWindow
 
 signals:
     void gameAdded();
+    void hidden();
 
 public:
     explicit GameAddingWindow(QWidget *parent = nullptr);
@@ -33,6 +34,8 @@ private:
     QString banner;
     QString image;
     QString logo;
+
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // GAMEADDINGWINDOW_H
