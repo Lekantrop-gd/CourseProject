@@ -55,7 +55,7 @@ void ProfileWindow::closeEvent(QCloseEvent *event)
 
 void ProfileWindow::on_addGameButton_clicked()
 {
-    this->gameAddingWindow = new GameAddingWindow(this);
+    this->gameAddingWindow = new GameAddingWindow();
 
     connect(this->gameAddingWindow, &GameAddingWindow::gameAdded, this, &ProfileWindow::on_gameAdded);
 
