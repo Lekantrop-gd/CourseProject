@@ -50,7 +50,7 @@ void MySQLDBManager::closeDataBase() {
 bool MySQLDBManager::createTables() {
     QSqlQuery query;
     if (!query.exec("CREATE TABLE Games("
-                    "id INT PRIMARY KEY AUTO INCREMENT, "
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     "title varchar[70] NOT NULL UNIQUE, "
                     "shortDescription TEXT NOT NULL UNIQUE, "
                     "fullDescription TEXT NOT NULL UNIQUE, "
@@ -66,6 +66,18 @@ bool MySQLDBManager::createTables() {
     {
         qDebug() << query.lastError().text();
         return false;
-    } else
-        return true;
+    }
+
+    if (!query.exec("CREATE TABLE Users("
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    "nickname varchar[50], "
+                    "profilePhoto varchar[50], "
+                    "accountType varchar[10] CHECK(accountType IN ('guest', 'user', 'developer', 'admin')) NOT NULL DEFAULT 'guest', "
+                    "status varchar[11] CHECK(status IN('confirmed', 'unconfirmed')) NOT NULL DEFAULT 'unconfirmed'"
+                    ")"))
+    {
+        qDebug() << query.lastError().text();
+        return false;
+    }
+    return true;
 }

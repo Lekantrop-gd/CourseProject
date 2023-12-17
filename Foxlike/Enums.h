@@ -2,10 +2,10 @@
 #define ENUMS_H
 
 enum class AccountType {
+    guest,
     user,
-    admin,
     developer,
-    guest
+    admin,
 };
 
 #endif // ENUMS_H
