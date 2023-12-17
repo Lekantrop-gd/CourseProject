@@ -14,13 +14,13 @@ GameCard::GameCard(Game game, QWidget *parent) : QWidget(parent), game(game)
     gameBanner->setPixmap(gameBannerResource.scaled(320, 180));
 
     QLabel *gameTitle = new QLabel(game.getTitle());
-    gameTitle->setStyleSheet("color: " + mainTextColor + "; font-size: 15px");
+    gameTitle->setStyleSheet("color: " + mainTextColor + "; font-size: 15px;");
 
     QLabel *gameDescription = new QLabel(game.getShortDescription());
     gameDescription->setStyleSheet("color: " + shadedTextColor + ";");
 
     QLabel *gamePrice = new QLabel(QString::number(game.getPrice(), 'f', 2) + "$");
-    gamePrice->setStyleSheet("color: " + mainTextColor + "; font-size: 20px");
+    gamePrice->setStyleSheet("color: " + mainTextColor + "; font-size: 20px;");
 
     QGridLayout *gridLayout = new QGridLayout(this);
 

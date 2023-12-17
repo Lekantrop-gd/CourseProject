@@ -2,7 +2,6 @@
 #define CONFIG_H
 #include <QString>
 
-
 const QString pathToGamesBanners = "gamesBanners/";
 const QString pathToUIElements = "UIElements/";
 const QString pathToProfilesImages = "profilesImages/";
@@ -12,9 +11,9 @@ const QString mainTextColor = "rgb(200, 200, 200)";
 const QString shadedTextColor = "rgb(150, 150, 150)";
 const QString profilePhotosExtension = ".jpg";
 const QString gameBannersExtension = ".jpg";
+const QString gameImagesExtension = ".jpg";
 const QString gameLogosExtension = ".png";
 const int sizeOfGameCard[] = {330, 270};
 const int gamesGridNumberOfColumns = 3;
-
 
 #endif // CONFIG_H

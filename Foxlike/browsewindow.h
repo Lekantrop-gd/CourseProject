@@ -1,6 +1,5 @@
 #ifndef BROWSEWINDOW_H
 #define BROWSEWINDOW_H
-
 #include <QMainWindow>
 #include "entrywindow.h"
 #include "profilewindow.h"
@@ -26,11 +25,11 @@ public slots:
 private slots:
     void on_accountButton_clicked();
 
-    void on_userLoggedIn();
+    void on_userLoggedIn(User user);
 
-    void createGameWindow(Game game);
+    void on_gameWindowClicked(Game game);
 
-    void on_Search_textChanged(const QString &arg1);
+    void on_search_textChanged(const QString &arg1);
 
     void on_filterButton_clicked();
 

@@ -1,7 +1,7 @@
 #ifndef PROFILEWINDOW_H
 #define PROFILEWINDOW_H
-
 #include <QMainWindow>
+#include "gameaddingwindow.h"
 #include "user.h"
 
 namespace Ui {
@@ -19,14 +19,17 @@ public:
     explicit ProfileWindow(User* user, QWidget *parent = nullptr);
     ~ProfileWindow();
 
-private:
-    Ui::ProfileWindow *ui;
-    User* user;
-
 protected:
     void closeEvent(QCloseEvent *event) override;
 
+private:
+    Ui::ProfileWindow *ui;
+    User* user;
+    GameAddingWindow* gameAddingWindow;
+
 private slots:
+    void on_gameAdded();
+
     void on_addGameButton_clicked();
 };
 

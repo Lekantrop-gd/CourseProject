@@ -27,7 +27,6 @@ void GameAddingWindow::on_bannerButton_clicked()
     ui->bannerHandler->setPixmap(QPixmap(filePath));
 }
 
-
 void GameAddingWindow::on_imageButton_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(nullptr, "Select game image", QDir::homePath(), "Images (*.jpg)");
@@ -36,7 +35,6 @@ void GameAddingWindow::on_imageButton_clicked()
 
     ui->imageHabdler->setPixmap(QPixmap(filePath));
 }
-
 
 void GameAddingWindow::on_logoButton_clicked()
 {
@@ -71,7 +69,5 @@ void GameAddingWindow::on_publishGameButton_clicked()
         );
 
     dbManager->inserGameIntoTable(game);
-
-    delete dbManager;
+    emit gameAdded();
 }
-

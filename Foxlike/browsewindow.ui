@@ -80,7 +80,7 @@
         <widget class="QWidget" name="HeaderButtons" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="Search">
+           <widget class="QLineEdit" name="search">
             <property name="minimumSize">
              <size>
               <width>200</width>

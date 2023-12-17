@@ -2,7 +2,6 @@
 #include "ui_profilewindow.h"
 #include "Config.h"
 #include "GameCard.h"
-#include "gameaddingwindow.h"
 #include <QCloseEvent>
 
 ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
@@ -19,7 +18,6 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + this->user->getProfilePhoto() + profilePhotosExtension));
     ui->profilePhoto->setMinimumSize(200, 200);
 
-    GameCard gameCard(user->getGames()[0]);
     ui->GamesScrollArea->setMinimumSize(sizeOfGameCard[0] + 50, sizeOfGameCard[1] + 20);
 
     ui->nicknameLabel->setText(this->user->getNickname());
@@ -28,9 +26,13 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
         ui->addGameButton->hide();
     }
 
-    for (int x = 0; x < user->getGames().length(); x++) {
-        GameCard *gameCardWidget = new GameCard(user->getGames()[0]);
-        ui->GamesGrid->addWidget(gameCardWidget, x, 0);
+    if (this->user->getAccountType() != AccountType::guest) {
+        int counter = 0;
+        for (Game game : user->getGames()) {
+            GameCard *gameCardWidget = new GameCard(game);
+            ui->GamesGrid->addWidget(gameCardWidget, counter, 0);
+            counter++;
+        }
     }
 }
 
@@ -39,17 +41,26 @@ ProfileWindow::~ProfileWindow()
     delete ui;
 }
 
+void ProfileWindow::on_gameAdded()
+{
+    delete this->gameAddingWindow;
+    this->close();
+}
+
 void ProfileWindow::closeEvent(QCloseEvent *event)
 {
-    this->hide();
     emit hidden();
     event->accept();
 }
 
 void ProfileWindow::on_addGameButton_clicked()
 {
-    GameAddingWindow *gameAddingWindow = new GameAddingWindow();
+    this->gameAddingWindow = new GameAddingWindow(this);
+
+    connect(this->gameAddingWindow, &GameAddingWindow::gameAdded, this, &ProfileWindow::on_gameAdded);
+
     this->hide();
+
     gameAddingWindow->show();
 }
 

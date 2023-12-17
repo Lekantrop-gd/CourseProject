@@ -11,6 +11,9 @@ class GameAddingWindow : public QMainWindow
 {
     Q_OBJECT
 
+signals:
+    void gameAdded();
+
 public:
     explicit GameAddingWindow(QWidget *parent = nullptr);
     ~GameAddingWindow();

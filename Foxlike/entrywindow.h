@@ -1,9 +1,7 @@
 #ifndef ENTRYWINDOW_H
 #define ENTRYWINDOW_H
-
 #include <QMainWindow>
-#include <QString>
-#include "Enums.h"
+#include "user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EntryWindow; }
@@ -14,7 +12,7 @@ class EntryWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void userLoggedIn(QString profilePhoto, QString nickname, AccountType accountType);
+    void userLoggedIn(User user);
 
 public:
     EntryWindow(QWidget *parent = nullptr);

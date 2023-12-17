@@ -31,7 +31,7 @@ bool MySQLDBManager::restoreDataBase() {
             return true;
         }
     } else {
-        qDebug() << "Не вдалось відновити базу даних";
+        qDebug() << "Unable to restore database";
         return false;
     }
 }
@@ -50,18 +50,18 @@ void MySQLDBManager::closeDataBase() {
 bool MySQLDBManager::createTables() {
     QSqlQuery query;
     if (!query.exec("CREATE TABLE Games("
-                    "id INT PRIMARY KEY, "
-                    "title varchar[70] NOT NULL, "
-                    "shortDescription TEXT NOT NULL, "
-                    "fullDescription TEXT NOT NULL, "
+                    "id INT PRIMARY KEY AUTO INCREMENT, "
+                    "title varchar[70] NOT NULL UNIQUE, "
+                    "shortDescription TEXT NOT NULL UNIQUE, "
+                    "fullDescription TEXT NOT NULL UNIQUE, "
                     "price DECIMAL(4, 2) NOT NULL, "
                     "developer varchar[70] NOT NULL, "
                     "publisher varchar[70] NOT NULL, "
                     "releaseDate DATE NOT NULL, "
                     "genre varchar[30] NOT NULL,"
-                    "banner varchar[80] NOT NULL,"
-                    "image varchar[80] NOT NULL,"
-                    "icon varchar[80] NOT NULL"
+                    "banner varchar[80] NOT NULL UNIQUE,"
+                    "image varchar[80] NOT NULL UNIQUE,"
+                    "icon varchar[80] NOT NULL UNIQUE"
                     ");"))
     {
         qDebug() << query.lastError().text();

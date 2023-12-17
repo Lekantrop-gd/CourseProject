@@ -1,14 +1,13 @@
 #include "user.h"
-#include <QDebug>
-
-User::User(QVector<Game> games, EntryWindow *entryWindow) : games(games)
-{
-    connect(entryWindow, &EntryWindow::userLoggedIn, this, &User::onUserLoggedIn);
-}
 
 AccountType User::getAccountType() const
 {
     return accountType;
+}
+
+int User::getId() const
+{
+    return id;
 }
 
 QString User::getProfilePhoto() const
@@ -26,9 +25,27 @@ QVector<Game> User::getGames() const
     return games;
 }
 
-void User::onUserLoggedIn(QString profilePhoto, QString nickname, AccountType accountType)
+User::User(int id, const QString &nickname, const QString &profilePhoto, const QVector<Game> &games, AccountType accountType) :
+    id(id),
+    nickname(nickname),
+    profilePhoto(profilePhoto),
+    games(games),
+    accountType(accountType)
+{}
+
+User::User(User *user)
 {
-    this->profilePhoto = profilePhoto;
-    this->nickname = nickname;
-    this->accountType = accountType;
+    this->id = user->id;
+    this->nickname = user->nickname;
+    this->profilePhoto = user->profilePhoto;
+    this->games = user->games;
+    this->accountType = user->accountType;
+}
+
+User::User()
+{
+    this->id = 0;
+    this->nickname = NULL;
+    this->profilePhoto = NULL;
+    this->accountType = AccountType::guest;
 }

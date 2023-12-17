@@ -65,7 +65,6 @@ void GameWindow::on_deleteGameButton_clicked()
     if (reply == QMessageBox::Yes) {
         GamesDBManager *dbManager = GamesDBManager::getInstance();
         dbManager->deleteGame(this->game.getId());
-        delete dbManager; //What i have to do with that?
         this->close();
     }
 }

@@ -26,7 +26,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     ui->filterButtons->hide();
 
     this->entryWindow = new EntryWindow();
-    this->user = new User(this->dbManager->getAllGames(), entryWindow);
+    this->user = new User();
     this->profileWindow = new ProfileWindow(user);
     this->gameWindow = nullptr;
 
@@ -36,7 +36,6 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
 BrowseWindow::~BrowseWindow()
 {
     delete ui;
-    //Should I delete anything here?
 }
 
 void BrowseWindow::refreshGames(QVector<Game> games)
@@ -57,7 +56,7 @@ void BrowseWindow::refreshGames(QVector<Game> games)
 
     for (Game game : games) {
         gameCards[counter] = new GameCard(games[counter]);
-        connect(gameCards[counter], &GameCard::clicked, this, &BrowseWindow::createGameWindow);
+        connect(gameCards[counter], &GameCard::clicked, this, &BrowseWindow::on_gameWindowClicked);
 
         if (y >= gamesGridNumberOfColumns) { y = 0; x++; }
 
@@ -67,7 +66,7 @@ void BrowseWindow::refreshGames(QVector<Game> games)
     }
 }
 
-void BrowseWindow::createGameWindow(Game game)
+void BrowseWindow::on_gameWindowClicked(Game game)
 {
     delete this->gameWindow;
     this->gameWindow = new GameWindow(game, this->user);
@@ -81,6 +80,7 @@ void BrowseWindow::createGameWindow(Game game)
 void BrowseWindow::on_accountButton_clicked()
 {
     this->hide();
+
     if (this->user->getAccountType() != AccountType::guest) {
         this->profileWindow->show();
     }
@@ -89,12 +89,15 @@ void BrowseWindow::on_accountButton_clicked()
     }
 }
 
-void BrowseWindow::on_userLoggedIn()
+void BrowseWindow::on_userLoggedIn(User user)
 {
-    delete this->profileWindow;
-    this->profileWindow = new ProfileWindow(user);
+    delete this->user;
+    this->user = new User(&user);
 
-    connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_userLoggedIn);
+    delete this->profileWindow;
+    this->profileWindow = new ProfileWindow(&user);
+
+    connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
 
     this->show();
 }
@@ -105,7 +108,7 @@ void BrowseWindow::on_subWindowClosed()
     this->show();
 }
 
-void BrowseWindow::on_Search_textChanged(const QString &arg1)
+void BrowseWindow::on_search_textChanged(const QString &arg1)
 {
     ui->filterButtons->hide();
     refreshGames(this->dbManager->getGamesByKeyWords(arg1));
@@ -114,7 +117,7 @@ void BrowseWindow::on_Search_textChanged(const QString &arg1)
 void BrowseWindow::on_filterButton_clicked()
 {
     if (ui->filterButtons->isHidden()) {
-        ui->Search->setText("");
+        ui->search->setText("");
         ui->filterButtons->show();
     }
     else {
@@ -131,14 +134,14 @@ void BrowseWindow::on_priceSlider_valueChanged(int value)
         refreshGames(this->dbManager->getAllGames());
     }
     else {
-        ui->priceText->setText("Under " + QString::number(value));
+        ui->priceText->setText("Under " + QString::number(value) + "$");
         refreshGames(this->dbManager->getGamesByPrice(value));
     }
-
 }
 
 void BrowseWindow::on_browseButton_clicked()
 {
+    ui->filterButtons->hide();
     refreshGames(this->dbManager->getAllGames());
 }
 
@@ -149,7 +152,6 @@ void BrowseWindow::on_genreComboBox_textActivated(const QString &arg1)
     if (arg1 == "None") {
         refreshGames(this->dbManager->getAllGames());
     }
-
     else {
         refreshGames(this->dbManager->getGamesByGenre(arg1));
     }

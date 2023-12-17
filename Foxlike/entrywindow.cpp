@@ -2,6 +2,8 @@
 #include "ui_entrywindow.h"
 #include <QPixmap>
 #include <QIcon>
+#include "game.h"
+#include "Enums.h"
 
 EntryWindow::EntryWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,13 +25,15 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    emit userLoggedIn("Leon", "Leon228", AccountType::developer);
+    QVector<Game> games;
+    User user(0, "Leon228", "Leon", games, AccountType::developer);
+    emit userLoggedIn(&user);
     this->hide();
 }
 
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
-    emit userLoggedIn(NULL, NULL, AccountType::guest);
+    emit userLoggedIn(NULL);
     this->hide();
 }
 
