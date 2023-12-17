@@ -2,6 +2,7 @@
 #define ENTRYWINDOW_H
 #include <QMainWindow>
 #include "user.h"
+#include "usersdbmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EntryWindow; }
@@ -12,7 +13,7 @@ class EntryWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void userLoggedIn(User user);
+    void userLoggedIn(User* user);
 
 public:
     EntryWindow(QWidget *parent = nullptr);
@@ -25,5 +26,6 @@ private slots:
 
 private:
     Ui::EntryWindow *ui;
+    UsersDBManager *usersDBManager;
 };
 #endif // ENTRYWINDOW_H

@@ -14,6 +14,7 @@ class ProfileWindow : public QMainWindow
 
 signals:
     void hidden();
+    void loggedOut();
 
 public:
     explicit ProfileWindow(User* user, QWidget *parent = nullptr);
@@ -31,6 +32,7 @@ private slots:
     void on_gameAdded();
 
     void on_addGameButton_clicked();
+    void on_logOutButton_clicked();
 };
 
 #endif // PROFILEWINDOW_H

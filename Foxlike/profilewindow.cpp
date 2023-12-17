@@ -49,6 +49,7 @@ void ProfileWindow::on_gameAdded()
 
 void ProfileWindow::closeEvent(QCloseEvent *event)
 {
+    this->hide();
     emit hidden();
     event->accept();
 }
@@ -62,5 +63,12 @@ void ProfileWindow::on_addGameButton_clicked()
     this->hide();
 
     gameAddingWindow->show();
+}
+
+void ProfileWindow::on_logOutButton_clicked()
+{
+    emit loggedOut();
+    this->hide();
+    emit hidden();
 }
 

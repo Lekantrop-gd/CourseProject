@@ -89,17 +89,29 @@ void BrowseWindow::on_accountButton_clicked()
     }
 }
 
-void BrowseWindow::on_userLoggedIn(User user)
+void BrowseWindow::on_userLoggedIn(User* user)
 {
     delete this->user;
-    this->user = new User(&user);
+    if (user == nullptr) {
+        this->user = new User();
+    }
+    else {
+        this->user = new User(user);
+    }
 
     delete this->profileWindow;
-    this->profileWindow = new ProfileWindow(&user);
+    this->profileWindow = new ProfileWindow(this->user);
 
     connect(profileWindow, &ProfileWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
+    connect(profileWindow, &ProfileWindow::loggedOut, this, &BrowseWindow::on_userLoggedOut);
 
     this->show();
+}
+
+void BrowseWindow::on_userLoggedOut()
+{
+    delete this->user;
+    this->user = new User();
 }
 
 void BrowseWindow::on_subWindowClosed()
@@ -142,6 +154,7 @@ void BrowseWindow::on_priceSlider_valueChanged(int value)
 void BrowseWindow::on_browseButton_clicked()
 {
     ui->filterButtons->hide();
+    ui->search->clear();
     refreshGames(this->dbManager->getAllGames());
 }
 

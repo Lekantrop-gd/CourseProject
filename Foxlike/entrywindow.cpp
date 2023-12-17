@@ -2,8 +2,6 @@
 #include "ui_entrywindow.h"
 #include <QPixmap>
 #include <QIcon>
-#include "game.h"
-#include "Enums.h"
 
 EntryWindow::EntryWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,6 +14,8 @@ EntryWindow::EntryWindow(QWidget *parent)
 
     QPixmap logoImage("../UI/Resources/Logo.png");
     ui->logo->setPixmap(logoImage.scaled(150, 150, Qt::KeepAspectRatio));
+
+    this->usersDBManager = UsersDBManager::getInstance();
 }
 
 EntryWindow::~EntryWindow()
@@ -25,15 +25,24 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    QVector<Game> games;
-    User user(0, "Leon228", "Leon", games, AccountType::developer);
-    emit userLoggedIn(&user);
+    if (this->usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text()) == nullptr) {
+        emit userLoggedIn(nullptr);
+    }
+    else {
+        emit userLoggedIn(this->usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text()));
+    }
+
     this->hide();
+    ui->nicknameInput->clear();
+    ui->passwordInput->clear();
 }
 
 void EntryWindow::on_continueAsGuestButton_clicked()
 {
-    emit userLoggedIn(NULL);
+    emit userLoggedIn(nullptr);
+
     this->hide();
+    ui->nicknameInput->clear();
+    ui->passwordInput->clear();
 }
 

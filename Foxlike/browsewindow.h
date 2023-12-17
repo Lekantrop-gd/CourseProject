@@ -25,7 +25,9 @@ public slots:
 private slots:
     void on_accountButton_clicked();
 
-    void on_userLoggedIn(User user);
+    void on_userLoggedIn(User* user);
+
+    void on_userLoggedOut();
 
     void on_gameWindowClicked(Game game);
 

@@ -70,8 +70,9 @@ bool MySQLDBManager::createTables() {
 
     if (!query.exec("CREATE TABLE Users("
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    "nickname varchar[50], "
-                    "profilePhoto varchar[50], "
+                    "nickname varchar[50] UNIQUE, "
+                    "password TEXT NOT NULL, "
+                    "profilePhoto varchar[50] UNIQUE, "
                     "accountType varchar[10] CHECK(accountType IN ('guest', 'user', 'developer', 'admin')) NOT NULL DEFAULT 'guest', "
                     "status varchar[11] CHECK(status IN('confirmed', 'unconfirmed')) NOT NULL DEFAULT 'unconfirmed'"
                     ")"))

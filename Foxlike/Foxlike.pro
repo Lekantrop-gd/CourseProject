@@ -19,7 +19,8 @@ SOURCES += \
     entrywindow.cpp \
     mysqldbmanager.cpp \
     profilewindow.cpp \
-    user.cpp
+    user.cpp \
+    usersdbmanager.cpp
 
 HEADERS += \
     Config.h \
@@ -34,7 +35,8 @@ HEADERS += \
     gamewindow.h \
     mysqldbmanager.h \
     profilewindow.h \
-    user.h
+    user.h \
+    usersdbmanager.h
 
 FORMS += \
     browsewindow.ui \
