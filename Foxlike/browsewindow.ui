@@ -305,26 +305,6 @@ QComboBox::disabled {
 }
 </string>
          </property>
-         <item>
-          <property name="text">
-           <string>None</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Sandbox</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>RPG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Action</string>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="0" column="3">

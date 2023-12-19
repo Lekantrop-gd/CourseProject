@@ -29,7 +29,7 @@ private slots:
 
     void on_userLoggedOut();
 
-    void on_gameWindowClicked(Game game);
+    void on_gameCardClicked(Game game);
 
     void on_search_textChanged(const QString &arg1);
 

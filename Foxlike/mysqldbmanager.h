@@ -10,7 +10,7 @@ class MySQLDBManager : public DBManager {
 public:
     static MySQLDBManager* getInstance();
 
-    virtual void connectToDataBase();
+    virtual bool connectToDataBase();
 
     virtual bool createTables();
 

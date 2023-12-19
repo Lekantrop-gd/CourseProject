@@ -15,7 +15,6 @@ GamesDBManager* GamesDBManager::getInstance() {
 bool GamesDBManager::inserGameIntoTable(const Game& game) {
     QSqlQuery query;
     query.prepare("INSERT INTO Games("
-                  "id, "
                   "title, "
                   "shortDescription, "
                   "fullDescription, "
@@ -29,7 +28,6 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
                   "icon) "
                   ""
                   "VALUES("
-                  ":id, "
                   ":title, "
                   ":shortDescription, "
                   ":fullDescription, "
@@ -42,7 +40,6 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
                   ":image, "
                   ":icon)");
 
-    query.bindValue(":id", game.getId());
     query.bindValue(":title", game.getTitle());
     query.bindValue(":shortDescription", game.getShortDescription());
     query.bindValue(":fullDescription", game.getFullDescription());
@@ -68,22 +65,12 @@ void GamesDBManager::deleteGame(int gameId)
 {
     QSqlQuery query;
 
-    query.prepare("DELETE FROM Games WHERE id = :id");
+    query.prepare("DELETE FROM Games WHERE id = :id AND status = 'confirmed'");
     query.bindValue(":id", gameId);
 
     if (!query.exec()) {
         qDebug() << query.lastError().text();
     }
-}
-
-int GamesDBManager::getLastGameId()
-{
-    QSqlQuery query;
-
-    query.exec("SELECT MAX(id) FROM Games");
-    query.next();
-
-    return query.value(0).toInt();
 }
 
 QVector<Game> GamesDBManager::prepareGames(QSqlQuery query)
@@ -121,7 +108,7 @@ QVector<Game> GamesDBManager::getAllGames()
 {
     QSqlQuery query;
 
-    query.exec("SELECT * FROM GAMES");
+    query.exec("SELECT * FROM GAMES WHERE status = 'confirmed'");
 
     return prepareGames(std::move(query));
 }
@@ -130,7 +117,7 @@ QVector<Game> GamesDBManager::getGamesByKeyWords(QString keyWords)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM GAMES WHERE title LIKE :keyWords OR shortDescription LIKE :keyWords OR fullDescription LIKE :keyWords");
+    query.prepare("SELECT * FROM GAMES WHERE title LIKE :keyWords OR shortDescription LIKE :keyWords OR fullDescription LIKE :keyWords AND status = 'confirmed'");
     query.bindValue(":keyWords", "%" + keyWords + "%");
 
     return prepareGames(std::move(query));
@@ -140,7 +127,7 @@ QVector<Game> GamesDBManager::getGamesByGenre(QString genre)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM GAMES WHERE genre LIKE :genre");
+    query.prepare("SELECT * FROM GAMES WHERE genre LIKE :genre AND status = 'confirmed'");
     query.bindValue(":genre", "%" + genre + "%");
 
     return prepareGames(std::move(query));
@@ -150,7 +137,7 @@ QVector<Game> GamesDBManager::getGamesByPrice(float maximumPrice)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM GAMES WHERE price < :price");
+    query.prepare("SELECT * FROM GAMES WHERE price < :price AND status = 'confirmed'");
     query.bindValue(":price", maximumPrice);
 
     return prepareGames(std::move(query));
@@ -160,11 +147,28 @@ Game GamesDBManager::getGameById(int id)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM GAMES WHERE id = :id");
+    query.prepare("SELECT * FROM Games WHERE id = :id AND status = 'confirmed'");
     query.bindValue(":id", id);
 
     QVector<Game> games = prepareGames(std::move(query));
 
     if (games.size() != 0)
         return games[0];
+}
+
+QVector<QString> GamesDBManager::getAllGenres()
+{
+    QSqlQuery query;
+    QVector<QString> genres;
+
+    if (query.exec("SELECT DISTINCT genre FROM Games")) {
+        while (query.next()) {
+            genres.append(query.value(0).toString());
+        }
+    }
+    else {
+        query.lastError();
+    }
+
+    return genres;
 }

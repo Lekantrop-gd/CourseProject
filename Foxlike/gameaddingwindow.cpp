@@ -6,12 +6,16 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QCloseEvent>
+#include <QMessageBox>
 
 GameAddingWindow::GameAddingWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameAddingWindow)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle("Foxlike Games");
+    this->setWindowIcon(QIcon(pathToUIElements + "Logo.ico"));
 }
 
 GameAddingWindow::~GameAddingWindow()
@@ -48,29 +52,46 @@ void GameAddingWindow::on_logoButton_clicked()
 
 void GameAddingWindow::on_publishGameButton_clicked()
 {
-    GamesDBManager *dbManager = GamesDBManager::getInstance();
+    if (ui->bannerHandler->pixmap().isNull() ||
+        ui->imageHabdler->pixmap().isNull() ||
+        ui->shortDescriptionInput->text().length() < 20 ||
+        ui->fullDescriptionInput->toPlainText().length() < 100 ||
+        ui->logoHandler->pixmap().isNull() ||
+        ui->titleInput->text().length() < 1 ||
+        ui->developerInput->text().length() < 1 ||
+        ui->publisherInput->text().length() < 1 ||
+        ui->releaseDateInput->text().length() < 3 ||
+        ui->genreInput->text().length() < 1||
+        ui->priceInput->text().length() < 1)
+    {
+        QMessageBox::warning(this, "Warning!", "You haven't filled all fields or met the minimum number of characters.");
+    }
+    else
+    {
+        GamesDBManager *dbManager = GamesDBManager::getInstance();
 
-    QFile::copy(this->banner, pathToGamesBanners + QFileInfo(this->banner).fileName() + gameBannersExtension);
-    QFile::copy(this->image, pathToGamesBanners + QFileInfo(this->image).fileName() + gameBannersExtension);
-    QFile::copy(this->logo, pathToGamesBanners + QFileInfo(this->logo).fileName() + gameLogosExtension);
+        QFile::copy(this->banner, pathToGamesImages + QFileInfo(this->banner).fileName());
+        QFile::copy(this->image, pathToGamesImages + QFileInfo(this->image).fileName());
+        QFile::copy(this->logo, pathToGamesImages + QFileInfo(this->logo).fileName());
 
-    Game game(
-        dbManager->getLastGameId() + 1,
-        ui->titleInput->text(),
-        ui->shortDescriptionInput->text(),
-        ui->fullDescriptionInput->toPlainText(),
-        ui->priceInput->text().toFloat(),
-        ui->developerInput->text(),
-        ui->publisherInput->text(),
-        ui->releaseDateInput->text(),
-        ui->genreInput->text(),
-        QFileInfo(this->banner).fileName(),
-        QFileInfo(this->image).fileName(),
-        QFileInfo(this->logo).fileName()
-        );
+        Game game(
+            0,
+            ui->titleInput->text(),
+            ui->shortDescriptionInput->text(),
+            ui->fullDescriptionInput->toPlainText(),
+            ui->priceInput->text().toFloat(),
+            ui->developerInput->text(),
+            ui->publisherInput->text(),
+            ui->releaseDateInput->text(),
+            ui->genreInput->text(),
+            QFileInfo(this->banner).fileName(),
+            QFileInfo(this->image).fileName(),
+            QFileInfo(this->logo).fileName()
+            );
 
-    dbManager->inserGameIntoTable(game);
-    emit gameAdded();
+        dbManager->inserGameIntoTable(game);
+        emit gameAdded();
+    }
 }
 
 void GameAddingWindow::closeEvent(QCloseEvent *event)

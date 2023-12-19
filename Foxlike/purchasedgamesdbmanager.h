@@ -1,6 +1,5 @@
 #ifndef PURCHASEDGAMESDBMANAGER_H
 #define PURCHASEDGAMESDBMANAGER_H
-#include "mysqldbmanager.h"
 #include "game.h"
 
 class PurchasedGamesDBManager// : public MySQLDBManager
@@ -10,14 +9,14 @@ public:
 
     QVector<Game> getGamesOfUserById(int id);
 
+    bool addPurchase(int userId, int gameId, QString payment);
+
+    void deletePurchaceByGameId(int gameId);
+
 private:
     PurchasedGamesDBManager() = default;
 
     static PurchasedGamesDBManager* instance;
-
-    //virtual void connectToDataBase();
-
-    //virtual bool createTables();
 };
 
 #endif // PURCHASEDGAMESDBMANAGER_H

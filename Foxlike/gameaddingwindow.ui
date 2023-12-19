@@ -14,7 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: rgb(18, 18, 18)</string>
+   <string notr="true">background: rgb(18, 18, 18);
+color: rbg(255, 255, 255)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -129,7 +130,7 @@ QPushButton:hover {
              </font>
             </property>
             <property name="text">
-             <string>Short description (80 characters):</string>
+             <string>Short description (min. 20 characters):</string>
             </property>
            </widget>
           </item>
@@ -153,7 +154,7 @@ QPushButton:hover {
              </font>
             </property>
             <property name="text">
-             <string>Full description:</string>
+             <string>Full description (min. 80 characters):</string>
             </property>
            </widget>
           </item>

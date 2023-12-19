@@ -3,7 +3,9 @@
 #include "Config.h"
 #include <QMouseEvent>
 #include <QMessageBox>
+#include <QFileDialog>
 #include "gamesdbmanager.h"
+#include "purchasedgamesdbmanager.h"
 
 GameWindow::GameWindow(Game game, User* user, QWidget *parent) :
     QMainWindow(parent),
@@ -14,10 +16,10 @@ GameWindow::GameWindow(Game game, User* user, QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("Foxlike Games");
-    this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
-
-    ui->gameImageHandel->setPixmap(QPixmap(pathToGamesBanners + game.getImage() + gameBannersExtension));
-    ui->logoLabel->setPixmap(QPixmap(pathToGamesBanners + game.getIcon() + gameLogosExtension));
+    this->setWindowIcon(QIcon(pathToUIElements + "Logo.ico"));
+    
+    ui->gameImageHandel->setPixmap(QPixmap(pathToGamesImages + game.getImage()));
+    ui->logoLabel->setPixmap(QPixmap(pathToGamesImages + game.getIcon()));
 
     ui->titleLabel->setText(game.getTitle());
     ui->descriptionTextBrowser->setText(game.getFullDescription());
@@ -50,6 +52,25 @@ void GameWindow::on_purchaseButton_clicked()
     if (user->getAccountType() == AccountType::guest) {
         QMessageBox::critical(this, "Purchase error", "Unable to make a purchase. Log in first.");
     }
+    else {
+        PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
+
+        QString filePath = QFileDialog::getOpenFileName(nullptr, "Select payment screenshot", QDir::homePath(), "Images(*.jpg, *.jpeg, *.jpe *.jif, *.jfif, *.jfi, *.png)");
+        QFile::copy(filePath, pathToPayments + QString::number(this->user->getId()) +
+                                               QString::number(this->game.getId()));
+
+        if (purchasedGamesDBManager->addPurchase(this->user->getId(),
+                                                 this->game.getId(),
+                                                 QString::number(this->user->getId()) +
+                                                 QString::number(this->game.getId()) + filePath.mid(filePath.indexOf("."))))
+        {
+            QMessageBox::information(this, "Congratulation!", "You bought this game! It will appear in your accont when admin confirms it.");
+        }
+        else {
+            QMessageBox::warning(this, "Warning!", "Something went wrong. You could already have this game or "
+                                                   "problems with database may occure. Please try later.");
+        }
+    }
 }
 
 void GameWindow::on_deleteGameButton_clicked()
@@ -64,6 +85,8 @@ void GameWindow::on_deleteGameButton_clicked()
 
     if (reply == QMessageBox::Yes) {
         GamesDBManager *dbManager = GamesDBManager::getInstance();
+        PurchasedGamesDBManager *purchaseDBManager = PurchasedGamesDBManager::getInstance();
+        purchaseDBManager->deletePurchaceByGameId(this->game.getId());
         dbManager->deleteGame(this->game.getId());
         this->close();
     }

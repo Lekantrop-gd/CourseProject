@@ -24,11 +24,13 @@ MySQLDBManager::MySQLDBManager() {
     db.setDatabaseName(this->dataBaseName);
 }
 
-void MySQLDBManager::connectToDataBase() {
+bool MySQLDBManager::connectToDataBase() {
     if (QFile(this->dataBaseName).exists()) {
-        this->openDataBase();
-    } else {
-        this->restoreDataBase();
+        return this->openDataBase();
+    }
+
+    else {
+        return this->restoreDataBase();
     }
 }
 
@@ -67,13 +69,15 @@ bool MySQLDBManager::createTables() {
                     "developer varchar[70] NOT NULL, "
                     "publisher varchar[70] NOT NULL, "
                     "releaseDate DATE NOT NULL, "
-                    "genre varchar[30] NOT NULL,"
-                    "banner varchar[80] NOT NULL UNIQUE,"
-                    "image varchar[80] NOT NULL UNIQUE,"
-                    "icon varchar[80] NOT NULL UNIQUE"
+                    "genre varchar[30] NOT NULL, "
+                    "banner varchar[80] NOT NULL UNIQUE, "
+                    "image varchar[80] NOT NULL UNIQUE, "
+                    "icon varchar[80] NOT NULL UNIQUE, "
+                    "status varchar[11] CHECK(status IN('confirmed', 'unconfirmed')) NOT NULL DEFAULT 'unconfirmed'"
                     ");"))
     {
         qDebug() << query.lastError().text();
+        return false;
     }
 
     if (!query.exec("CREATE TABLE Users("
@@ -86,15 +90,18 @@ bool MySQLDBManager::createTables() {
                     ")"))
     {
         qDebug() << query.lastError().text();
+        return false;
     }
 
     if (!query.exec("CREATE TABLE PurchasedGames("
                     "userId INT REFERENCES Users(id), "
                     "gameId INT REFERENCES Games(id), "
                     "status varchar[11] CHECK(status IN('confirmed', 'unconfirmed')) NOT NULL DEFAULT 'unconfirmed'"
+                    "payment TEXT"
                     ")"))
     {
         qDebug() << query.lastError().text();
+        return false;
     }
 
     return true;

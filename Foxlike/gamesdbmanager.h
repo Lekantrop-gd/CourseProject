@@ -1,11 +1,10 @@
 #ifndef GAMESDBMANAGER_H
 #define GAMESDBMANAGER_H
-#include "mysqldbmanager.h"
 #include "game.h"
 #include <QVector>
 #include <QSqlQuery>
 
-class GamesDBManager //: public MySQLDBManager
+class GamesDBManager
 {
 public:
     static GamesDBManager* getInstance();
@@ -15,10 +14,10 @@ public:
     QVector<Game> getGamesByGenre(QString genre);
     QVector<Game> getGamesByPrice(float maximumPrice);
     Game getGameById(int id);
+    QVector<QString> getAllGenres();
 
     bool inserGameIntoTable(const Game& game);
     void deleteGame(int gameId);
-    int getLastGameId();
 
 private:
     GamesDBManager() = default;
@@ -26,10 +25,6 @@ private:
     static GamesDBManager* instance;
 
     QVector<Game> prepareGames(QSqlQuery query);
-
-//    void connectToDataBase() override;
-
-//    bool createTables() override;
 };
 
 #endif // GAMESDBMANAGER_H

@@ -12,7 +12,7 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("Foxlike Games");
-    this->setWindowIcon(QIcon("../UI/Resources/Logo.ico"));
+    this->setWindowIcon(QIcon(pathToUIElements + "Logo.ico"));
 
     if (user != nullptr) {
         ui->nicknameLabel->setText(user->getNickname());
@@ -20,7 +20,7 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
         ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + user->getProfilePhoto() + profilePhotosExtension));
         ui->profilePhoto->setMinimumSize(200, 200);
 
-        if (user->getAccountType() != AccountType::developer) {
+        if (user->getAccountType() != AccountType::developer && user->getAccountType() != AccountType::admin) {
             ui->addGameButton->hide();
         }
 

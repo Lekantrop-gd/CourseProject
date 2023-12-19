@@ -8,8 +8,8 @@ GameCard::GameCard(Game game, QWidget *parent) : QWidget(parent), game(game)
 {
     this->setCursor(Qt::PointingHandCursor);
     this->setMaximumSize(sizeOfGameCard[0], sizeOfGameCard[1]);
-
-    QPixmap gameBannerResource(pathToGamesBanners + game.getBanner());
+    
+    QPixmap gameBannerResource(pathToGamesImages + game.getBanner());
     QLabel *gameBanner = new QLabel();
     gameBanner->setPixmap(gameBannerResource.scaled(320, 180));
 
