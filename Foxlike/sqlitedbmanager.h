@@ -1,27 +1,26 @@
-#ifndef MYSQLDBMANAGER_H
-#define MYSQLDBMANAGER_H
+#ifndef SQLITEDBMANAGER_H
+#define SQLITEDBMANAGER_H
 
 #include <QSqlDatabase>
 #include <QVector>
 #include "dbmanager.h"
 
-class MySQLDBManager : public DBManager {
+class SQLiteDBManager : public DBManager {
 
 public:
-    static MySQLDBManager* getInstance();
+    static SQLiteDBManager* getInstance();
 
     virtual bool connectToDataBase();
 
     virtual bool createTables();
 
-protected:
-    MySQLDBManager();
+private:
+    SQLiteDBManager();
 
     QSqlDatabase db;
 
-    static MySQLDBManager* instance;
+    static SQLiteDBManager* instance;
 
-private:
     const QString dataBaseName = "database.db";
 
     bool openDataBase() override;
@@ -29,4 +28,4 @@ private:
     void closeDataBase() override;
 };
 
-#endif // MYSQLDBMANAGER_H
+#endif // SQLITEDBMANAGER_H

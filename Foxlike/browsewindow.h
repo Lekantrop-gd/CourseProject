@@ -44,7 +44,7 @@ private slots:
 private:
     Ui::BrowseWindow *ui;
 
-    GamesDBManager *dbManager;
+    GamesDBManager* dbManager;
     EntryWindow* entryWindow;
     ProfileWindow* profileWindow;
     User* user;

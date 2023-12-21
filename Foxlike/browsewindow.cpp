@@ -5,7 +5,7 @@
 #include "GameCard.h"
 #include "Config.h"
 #include "gamesdbmanager.h"
-#include "mysqldbmanager.h"
+#include "sqlitedbmanager.h"
 #include <QVector>
 #include <QSqlDatabase>
 #include <QMessageBox>
@@ -15,8 +15,8 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     ui(new Ui::BrowseWindow)
 {
     ui->setupUi(this);
-
-    MySQLDBManager *mySQLDBManager = MySQLDBManager::getInstance();
+    
+    SQLiteDBManager *mySQLDBManager = SQLiteDBManager::getInstance();
     this->dbManager = GamesDBManager::getInstance();
 
     if (!mySQLDBManager->connectToDataBase()) {

@@ -2,7 +2,7 @@
 #define PURCHASEDGAMESDBMANAGER_H
 #include "game.h"
 
-class PurchasedGamesDBManager// : public MySQLDBManager
+class PurchasedGamesDBManager
 {
 public:
     static PurchasedGamesDBManager* getInstance();
@@ -11,7 +11,7 @@ public:
 
     bool addPurchase(int userId, int gameId, QString payment);
 
-    void deletePurchaceByGameId(int gameId);
+    void deletePurchaseByGameId(int gameId);
 
 private:
     PurchasedGamesDBManager() = default;

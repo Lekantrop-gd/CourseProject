@@ -17,9 +17,10 @@ SOURCES += \
     gamewindow.cpp \
     main.cpp \
     entrywindow.cpp \
-    mysqldbmanager.cpp \
     profilewindow.cpp \
     purchasedgamesdbmanager.cpp \
+    registrationwindow.cpp \
+    sqlitedbmanager.cpp \
     user.cpp \
     usersdbmanager.cpp
 
@@ -34,9 +35,10 @@ HEADERS += \
     gameaddingwindow.h \
     gamesdbmanager.h \
     gamewindow.h \
-    mysqldbmanager.h \
     profilewindow.h \
     purchasedgamesdbmanager.h \
+    registrationwindow.h \
+    sqlitedbmanager.h \
     user.h \
     usersdbmanager.h
 
@@ -45,7 +47,8 @@ FORMS += \
     entrywindow.ui \
     gameaddingwindow.ui \
     gamewindow.ui \
-    profilewindow.ui
+    profilewindow.ui \
+    registrationwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

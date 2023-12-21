@@ -1,4 +1,4 @@
-#include "mysqldbmanager.h"
+#include "sqlitedbmanager.h"
 #include <QObject>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -7,16 +7,16 @@
 #include <QDebug>
 #include <QSqlTableModel>
 
-MySQLDBManager* MySQLDBManager::instance = nullptr;
+SQLiteDBManager* SQLiteDBManager::instance = nullptr;
 
-MySQLDBManager* MySQLDBManager::getInstance() {
+SQLiteDBManager* SQLiteDBManager::getInstance() {
     if (instance == nullptr) {
-        instance = new MySQLDBManager();
+        instance = new SQLiteDBManager();
     }
     return instance;
 }
 
-MySQLDBManager::MySQLDBManager() {
+SQLiteDBManager::SQLiteDBManager() {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("127.0.0.1");
     db.setUserName("root");
@@ -24,7 +24,7 @@ MySQLDBManager::MySQLDBManager() {
     db.setDatabaseName(this->dataBaseName);
 }
 
-bool MySQLDBManager::connectToDataBase() {
+bool SQLiteDBManager::connectToDataBase() {
     if (QFile(this->dataBaseName).exists()) {
         return this->openDataBase();
     }
@@ -34,7 +34,7 @@ bool MySQLDBManager::connectToDataBase() {
     }
 }
 
-bool MySQLDBManager::restoreDataBase() {
+bool SQLiteDBManager::restoreDataBase() {
     if (this->openDataBase()) {
         if (!this->createTables()) {
             return false;
@@ -47,18 +47,18 @@ bool MySQLDBManager::restoreDataBase() {
     }
 }
 
-bool MySQLDBManager::openDataBase() {
+bool SQLiteDBManager::openDataBase() {
     if (db.open()) {
         return true;
     } else
         return false;
 }
 
-void MySQLDBManager::closeDataBase() {
+void SQLiteDBManager::closeDataBase() {
     db.close();
 }
 
-bool MySQLDBManager::createTables() {
+bool SQLiteDBManager::createTables() {
     QSqlQuery query;
     if (!query.exec("CREATE TABLE Games("
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, "

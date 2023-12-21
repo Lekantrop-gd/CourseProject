@@ -17,7 +17,7 @@ public:
     QVector<QString> getAllGenres();
 
     bool inserGameIntoTable(const Game& game);
-    void deleteGame(int gameId);
+    bool deleteGame(int gameId);
 
 private:
     GamesDBManager() = default;

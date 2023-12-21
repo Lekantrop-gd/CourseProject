@@ -52,7 +52,7 @@ bool PurchasedGamesDBManager::addPurchase(int userId, int gameId, QString paymen
     return false;
 }
 
-void PurchasedGamesDBManager::deletePurchaceByGameId(int gameId)
+void PurchasedGamesDBManager::deletePurchaseByGameId(int gameId)
 {
     QSqlQuery query;
 

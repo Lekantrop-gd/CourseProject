@@ -1,7 +1,9 @@
 #include "gamesdbmanager.h"
 #include "qsqlerror.h"
+#include "Config.h"
 #include <QDebug>
 #include <QSqlQuery>
+#include <QFile>
 
 GamesDBManager* GamesDBManager::instance = nullptr;
 
@@ -61,16 +63,24 @@ bool GamesDBManager::inserGameIntoTable(const Game& game) {
     }
 }
 
-void GamesDBManager::deleteGame(int gameId)
+bool GamesDBManager::deleteGame(int gameId)
 {
     QSqlQuery query;
 
-    query.prepare("DELETE FROM Games WHERE id = :id AND status = 'confirmed'");
+    query.prepare("DELETE FROM Games WHERE id = :id");
     query.bindValue(":id", gameId);
+
+    Game game = getGameById(gameId);
 
     if (!query.exec()) {
         qDebug() << query.lastError().text();
+        return false;
     }
+
+    QFile::remove(pathToGamesImages + game.getBanner());
+    QFile::remove(pathToGamesImages + game.getImage());
+    QFile::remove(pathToGamesImages + game.getIcon());
+    return true;
 }
 
 QVector<Game> GamesDBManager::prepareGames(QSqlQuery query)

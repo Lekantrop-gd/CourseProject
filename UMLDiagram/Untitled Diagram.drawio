@@ -1,0 +1,183 @@
+<mxfile host="Electron" modified="2023-12-20T19:33:57.283Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="Plkkk1E3hBGKtyIEAn5L" version="22.1.11" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="2391" dy="1194" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-7" value="Main" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="370" width="190" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-8" value="main(argc : int, argv[] : char*) :&amp;nbsp;int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-7" vertex="1">
+          <mxGeometry y="26" width="190" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-12" value="BrowseWindow&lt;br&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="10" width="340" height="340" as="geometry">
+            <mxRectangle x="210" y="270" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-13" value="- ui: Ui:BrowseWindow*&lt;br&gt;- dbManager : GamesDBManager*&lt;br&gt;- entryWindow : EntryWindow*&lt;br&gt;- profileWindow : ProfileWindow*&lt;br&gt;- user : User*&lt;br&gt;- gameWindow : GameWindow*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-12" vertex="1">
+          <mxGeometry y="26" width="340" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-12" vertex="1">
+          <mxGeometry y="130" width="340" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-15" value="+ BrowseWindow( : QWidget)&lt;br&gt;+ ~BrowseWindow()&lt;br&gt;+ on_subWindowClosed() : void&lt;br&gt;- refreshGames( : QVector&amp;lt;Game&amp;gt;) : void&lt;br&gt;-&amp;nbsp;on_accountButton_clicked() : void&lt;br&gt;- on_userLoggedIn( : User*) : void&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_userLoggedOut() : void&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_gameCardClicked( : Game) : void&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- on_search_textChanged( : const QString&amp;amp;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_filterButton_clicked() : void&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_priceSlider_valueChanged( : int) : void&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_browseButton_clicked() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- on_genreComboBox_textActivated( : const QString&amp;amp;) : void&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-12" vertex="1">
+          <mxGeometry y="138" width="340" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-21" value="DBManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="600" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-24" value="+ openDataBase() : virtual bool&lt;br&gt;+ restoreDataBase() : virtual bool&lt;br&gt;+ closeDataBase() : virtual bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-21" vertex="1">
+          <mxGeometry y="26" width="200" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-25" value="EntryWindow&lt;br&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="435" width="250" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-33" value="- ui : UI::EntryWindow*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-25" vertex="1">
+          <mxGeometry y="26" width="250" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-32" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-25" vertex="1">
+          <mxGeometry y="52" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-28" value="+ EntryWindow( : QWidget)&lt;br&gt;+ ~EntryWindow()&lt;br&gt;+ userLoggedIn( : User*): void&lt;br&gt;- on_continueButton_clicked() : void&lt;br&gt;- on_continueAsGuestButton_clicked() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-25" vertex="1">
+          <mxGeometry y="60" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-35" value="«Enumeration»&lt;br&gt;&lt;b&gt;AccountType&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="650" y="10" width="140" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-36" value="guest" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-35" vertex="1">
+          <mxGeometry y="40" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-37" value="user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-35" vertex="1">
+          <mxGeometry y="66" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-38" value="developer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-35" vertex="1">
+          <mxGeometry y="92" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-39" value="admin&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-35" vertex="1">
+          <mxGeometry y="118" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-40" value="Game" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="940" y="10" width="190" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-41" value="- id : int&lt;br&gt;- title : QString&lt;br&gt;- shortDescription : QString&lt;br&gt;- fullDescription : QString&lt;br&gt;- price : float&lt;br&gt;- developer : QString&lt;br&gt;- publisher : QString&lt;br&gt;- releaseDate : QString&lt;br&gt;- genre : QString&lt;br&gt;- banner : QString&lt;br&gt;- image : QString&lt;br&gt;- icon : QString" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-40" vertex="1">
+          <mxGeometry y="26" width="190" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-42" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-40" vertex="1">
+          <mxGeometry y="210" width="190" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-43" value="+ Game( &lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;: int,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;:&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;const QString&amp;amp;,&lt;br&gt;: const QString&amp;amp;,&lt;br&gt;: const QString&amp;amp;,&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: float&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: const QString&amp;amp;&lt;br&gt;&lt;/span&gt;: const QString&amp;amp;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;)&lt;/blockquote&gt;+ getId() : int&lt;br&gt;+ getTitle() : QString&lt;br&gt;+ getShortDescription() : QString&lt;br&gt;+ getFullDescription() : QString&lt;br&gt;+ getPrie() : float&lt;br&gt;+ getDeveloper() : QString&lt;br&gt;+ getPublisher() : QString&lt;br&gt;+ getReleaseDate() : QString&lt;br&gt;+ getGenre() : QString&lt;br&gt;+ getBanner() : QString&lt;br&gt;+ getImage() : QString&lt;br&gt;+ getIcon() : QString&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-40" vertex="1">
+          <mxGeometry y="218" width="190" height="392" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-45" value="GameAddingWindow" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="250" y="600" width="230" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-46" value="- ui : Ui::GameAddingWindow*&lt;br&gt;- banner : QString&lt;br&gt;- image : QString&lt;br&gt;- logo : QString" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-45" vertex="1">
+          <mxGeometry y="26" width="230" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-47" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-45" vertex="1">
+          <mxGeometry y="100" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-48" value="+ GameAddingWindow( : QWidget)&lt;br&gt;+ ~GameAddingWindow();&lt;br&gt;+ gameAdded() : void&lt;br&gt;+ hidden() : void&lt;br&gt;- on_bannerButton_clicked() : void&lt;br&gt;- on_imageButton_clicked() : void&lt;br&gt;- on_logoButton_clicked() : void&lt;br&gt;- on_publishGameButton_clicked() : void&lt;br&gt;- closeEvent( : QCloseEvent*) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-45" vertex="1">
+          <mxGeometry y="108" width="230" height="182" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-49" value="GameCard" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="710" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-50" value="- game: Game" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-49" vertex="1">
+          <mxGeometry y="26" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-51" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-49" vertex="1">
+          <mxGeometry y="52" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-52" value="+ GameCard( : Game, : QWidget)&lt;br&gt;+ clicked( : Game) : void&lt;br&gt;# mousePressEvent( : QMouseEvent)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-49" vertex="1">
+          <mxGeometry y="60" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-57" value="GamesDBManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="10" y="900" width="310" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-58" value="- instance: GamesDBManager*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-57" vertex="1">
+          <mxGeometry y="26" width="310" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-59" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-57" vertex="1">
+          <mxGeometry y="52" width="310" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-60" value="+ getInstance() : GamesDBManager*&lt;br&gt;+ getAllGames() : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ getGamesByKeyWords( : QString) : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ getGamesByGenre( : QString) : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ getGamesByPrice( : float) : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ getGameById( : id) : Game&lt;br&gt;+ getAllGenres() : QVector&amp;lt;QString&amp;gt;&lt;br&gt;+ insertGameIntoTable( : game : const Game&amp;amp;) : bool&lt;br&gt;+ deleteGame(gameId : int) : bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-57" vertex="1">
+          <mxGeometry y="60" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-61" value="GameWindow" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="340" y="900" width="270" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-62" value="- ui : GameWindow*&lt;br&gt;- game : Game&lt;br&gt;- user : User*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-61" vertex="1">
+          <mxGeometry y="26" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-63" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-61" vertex="1">
+          <mxGeometry y="80" width="270" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-64" value="+ GameWindow( : Game, : User*, : QWidget*)&amp;nbsp;&lt;br&gt;+ ~GameWindow()&lt;br&gt;+ void hidden()&lt;br&gt;+ on_purchaseButton_clicked()&lt;br&gt;+ on_deleteGameButton_clicked()&lt;br&gt;- closeEvent( : QCloseEvent)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-61" vertex="1">
+          <mxGeometry y="88" width="270" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-65" value="ProfileWindow" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="370" y="10" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-66" value="- ui : Ui::ProfileWindow*&lt;br&gt;- gameAddingWindow : GameAddingWindow*&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-65" vertex="1">
+          <mxGeometry y="26" width="260" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-67" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-65" vertex="1">
+          <mxGeometry y="70" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-68" value="+ ProfileWindow( : User*, : QWidget*)&lt;br&gt;+ ~ProfileWindow()&lt;br&gt;# closeEvent( : QCloseEvent) : void&lt;br&gt;- on_gameAdded() : void&lt;br&gt;- on_addGameButton_clicked() : void&lt;br&gt;- on_logOutButton_clicked() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-65" vertex="1">
+          <mxGeometry y="78" width="260" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-69" value="PurchasedGamesDBManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="370" y="210" width="290" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-70" value="- instance : PurchasedGamesDBManager*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-69" vertex="1">
+          <mxGeometry y="26" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-71" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-69" vertex="1">
+          <mxGeometry y="50" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-72" value="+ getInstance() : PurchasedGamesDBManager*&lt;br&gt;+ getGamesOfUserById(id : int) : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ addPurchase(userId : int) : bool&lt;br&gt;+ deletePurchaseByGameId( : int)&lt;br&gt;- PurchasedGamesDBManager()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-69" vertex="1">
+          <mxGeometry y="58" width="290" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-73" value="SQLiteDBManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="280" y="370" width="290" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-74" value="- db : SQLiteDBManager&lt;br&gt;- instance SQLiteDBManager*&lt;br&gt;- dataBaseName : const QString" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-73" vertex="1">
+          <mxGeometry y="26" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-75" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-73" vertex="1">
+          <mxGeometry y="90" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-76" value="+ getInstance() : SQLiteDBManager*&lt;br&gt;+ connectToDataBase() : bool&lt;br&gt;+ createTables() : bool&lt;br&gt;- SQLiteDBManager()&lt;br&gt;- openDataBase() : bool&lt;br&gt;- restoreDataBase() : bool&lt;br&gt;- closeDataBase() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-73" vertex="1">
+          <mxGeometry y="98" width="290" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-77" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="500" y="600" width="420" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-78" value="- id : int&lt;br&gt;- nickname : QString&lt;br&gt;- profilePhoto : QString&lt;br&gt;- games : QVector&amp;lt;Game&amp;gt;&lt;br&gt;- accountType : AccountType" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-77" vertex="1">
+          <mxGeometry y="26" width="420" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-79" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-77" vertex="1">
+          <mxGeometry y="110" width="420" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-80" value="+ User( : int, : QString&amp;amp;, : QString&amp;amp;, : QVector&amp;lt;Game&amp;gt;, : AccountType)&lt;br&gt;+ User( : User*)&lt;br&gt;+ User()&lt;br&gt;+ getId()&amp;nbsp;: int&lt;br&gt;+ getNickname() : QString&lt;br&gt;+ getProfilePhoto()&amp;nbsp;: QString&lt;br&gt;+ getGames() : QVector&amp;lt;Game&amp;gt;&lt;br&gt;+ getAccountType() : AccountType" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-77" vertex="1">
+          <mxGeometry y="118" width="420" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-81" value="UsersDBManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="630" y="900" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-82" value="- instance : UsersDBManager*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-81" vertex="1">
+          <mxGeometry y="26" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h7e4zyzipVwq9WfJZEQj-81" vertex="1">
+          <mxGeometry y="52" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h7e4zyzipVwq9WfJZEQj-84" value="+ getInstance() : UsersDBManager*&lt;br&gt;+ fetchUser( : QString, : QString) : User*&lt;br&gt;- UsersDBManager()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h7e4zyzipVwq9WfJZEQj-81" vertex="1">
+          <mxGeometry y="60" width="230" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

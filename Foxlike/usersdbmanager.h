@@ -2,12 +2,14 @@
 #define USERSDBMANAGER_H
 #include "user.h"
 
-class UsersDBManager// : public MySQLDBManager
+class UsersDBManager
 {
 public:
     static UsersDBManager* getInstance();
 
     User* fetchUser(QString nickname, QString password);
+    bool checkIfUserExists(QString nickname);
+    bool insertUserIntoTable(const User& user, QString password);
 
 private:
     UsersDBManager() = default;

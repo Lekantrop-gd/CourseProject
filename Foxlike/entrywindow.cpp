@@ -2,6 +2,8 @@
 #include "ui_entrywindow.h"
 #include "usersdbmanager.h"
 #include "Config.h"
+#include "Enums.h"
+#include <QFileDialog>
 #include <QPixmap>
 #include <QIcon>
 #include <QMessageBox>
@@ -26,24 +28,34 @@ EntryWindow::~EntryWindow()
 
 void EntryWindow::on_continueButton_clicked()
 {
-    if (ui->nicknameInput->text() != "" && ui->passwordInput->text() != "") {
+    if (ui->nicknameInput->text().isEmpty() == false && ui->passwordInput->text().isEmpty() == false) {
         UsersDBManager *usersDBManager = UsersDBManager::getInstance();
 
-        User* user = usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text());
-        if (user != nullptr) {
-            emit userLoggedIn(user);
+        if (usersDBManager->checkIfUserExists(ui->nicknameInput->text())) {
+            User* user = usersDBManager->fetchUser(ui->nicknameInput->text(), ui->passwordInput->text());
 
-            this->hide();
+            if (user != nullptr) {
+                emit userLoggedIn(user);
 
-            ui->nicknameInput->clear();
-            ui->passwordInput->clear();
+                this->hide();
+
+                ui->nicknameInput->clear();
+                ui->passwordInput->clear();
+            }
+            else {
+                QMessageBox::warning(this, "Warning!", "Password is wrong!");
+            }
         }
 
         else {
-            QMessageBox::warning(this, "Warning!", "Nickname or password is wrong!");
+            if (QMessageBox::question(this, "No account found!",
+                                      "There is no account with that nickname! "
+                                      "Would you like to create a new one?") == QMessageBox::Yes)
+            {
+
+            }
         }
     }
-
     else {
         QMessageBox::warning(this, "Warning!", "You forgot about nickname or password.");
     }
@@ -59,4 +71,3 @@ void EntryWindow::on_continueAsGuestButton_clicked()
     ui->nicknameInput->clear();
     ui->passwordInput->clear();
 }
-

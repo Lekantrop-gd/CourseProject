@@ -70,10 +70,6 @@ void GameAddingWindow::on_publishGameButton_clicked()
     {
         GamesDBManager *dbManager = GamesDBManager::getInstance();
 
-        QFile::copy(this->banner, pathToGamesImages + QFileInfo(this->banner).fileName());
-        QFile::copy(this->image, pathToGamesImages + QFileInfo(this->image).fileName());
-        QFile::copy(this->logo, pathToGamesImages + QFileInfo(this->logo).fileName());
-
         Game game(
             0,
             ui->titleInput->text(),
@@ -89,7 +85,14 @@ void GameAddingWindow::on_publishGameButton_clicked()
             QFileInfo(this->logo).fileName()
             );
 
-        dbManager->inserGameIntoTable(game);
+        if (!dbManager->inserGameIntoTable(game)) {
+            QMessageBox::warning(this, "Warning!", "Unable to add game. Try later or change title or short/full description, it might cause the problem.");
+        }
+
+        QFile::copy(this->banner, pathToGamesImages + QFileInfo(this->banner).fileName());
+        QFile::copy(this->image, pathToGamesImages + QFileInfo(this->image).fileName());
+        QFile::copy(this->logo, pathToGamesImages + QFileInfo(this->logo).fileName());
+
         emit gameAdded();
     }
 }

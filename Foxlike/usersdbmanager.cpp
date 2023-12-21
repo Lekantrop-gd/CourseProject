@@ -46,3 +46,56 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
     return nullptr;
 }
 
+bool UsersDBManager::checkIfUserExists(QString nickname)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT nickname FROM Users WHERE nickname = :nickname AND status = 'confirmed'");
+    query.bindValue(":nickname", nickname);
+
+    if (query.exec()) {
+        query.next();
+        return query.isValid();
+    }
+
+    return false;
+}
+
+bool UsersDBManager::insertUserIntoTable(const User &user, QString password)
+{
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO Users(nickname, password, profilePhoto, accountType, status)"
+                  "VALUES(:nickname, :password, :profilePhoto, :accountType, 'unconfirmed')");
+
+    query.bindValue(":nickname", user.getNickname());
+    query.bindValue(":passowrd", password);
+    query.bindValue(":profilePhoto", user.getProfilePhoto());
+    switch (user.getAccountType()) {
+        case AccountType::guest:
+            query.bindValue(":accountType", "guest");
+            break;
+
+        case AccountType::user:
+            query.bindValue(":accountType", "user");
+            break;
+
+        case AccountType::developer:
+            query.bindValue(":accountType", "developer");
+            break;
+
+        case AccountType::admin:
+            query.bindValue(":accountType", "admin");
+            break;
+
+        default:
+            query.bindValue(":accountType", "guest");
+            break;
+    };
+
+    if (query.exec()) {
+        return true;
+    }
+
+    return false;
+}
