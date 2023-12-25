@@ -5,7 +5,7 @@
 #include "GameCard.h"
 #include "Config.h"
 #include "gamesdbmanager.h"
-#include "sqlitedbmanager.h"
+#include "mysqldbmanager.h"
 #include <QVector>
 #include <QSqlDatabase>
 #include <QMessageBox>
@@ -16,7 +16,7 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    SQLiteDBManager *mySQLDBManager = SQLiteDBManager::getInstance();
+    MySQLDBManager *mySQLDBManager = MySQLDBManager::getInstance();
     this->dbManager = GamesDBManager::getInstance();
 
     if (!mySQLDBManager->connectToDataBase()) {
@@ -98,6 +98,7 @@ void BrowseWindow::on_accountButton_clicked()
 
     if (this->user->getAccountType() != AccountType::guest) {
         this->profileWindow->show();
+        this->profileWindow->refreshGames();
     }
     else {
         this->entryWindow->show();

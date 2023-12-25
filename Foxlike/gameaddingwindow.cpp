@@ -94,6 +94,7 @@ void GameAddingWindow::on_publishGameButton_clicked()
 
         if (!dbManager->inserGameIntoTable(game)) {
             QMessageBox::warning(this, "Warning!", "Unable to add game. Try later or change title or short/full description, it might cause the problem.");
+            return;
         }
         else {
             QMessageBox::information(this, "Congratulations!", "You'he added your game! Now wait until administration approve it");

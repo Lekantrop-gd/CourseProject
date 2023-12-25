@@ -18,7 +18,9 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT id, nickname, password, profilePhoto, accountType FROM Users WHERE nickname = :nickname");
+    query.prepare("SELECT Users.id, Users.nickname, Users.password, Users.profilePhoto, AccountTypes.accountType "
+                  "FROM Users JOIN AccountTypes ON (Users.accountType = AccountTypes.accountTypeId) WHERE nickname = :nickname");
+
     query.bindValue(":nickname", nickname);
 
     if (query.exec()) {
@@ -29,7 +31,7 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
 
                 if (query.value(4).toString() == "user") accountType = AccountType::user;
                 else if (query.value(4).toString() == "developer") accountType = AccountType::developer;
-                else if (query.value(4).toString() == "admin") accountType = AccountType::admin;
+                else if (query.value(4).toString() == "contentManager") accountType = AccountType::contentManager;
                 else accountType = AccountType::guest;
 
                 User *user = new User(
@@ -51,7 +53,9 @@ bool UsersDBManager::checkIfUserExists(QString nickname)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT nickname FROM Users WHERE nickname = :nickname AND status = 'confirmed'");
+    query.prepare("SELECT nickname FROM Users WHERE nickname = :nickname AND "
+                  "status = (SELECT statusId FROM Statuses WHERE status = 'confirmed')");
+
     query.bindValue(":nickname", nickname);
 
     if (query.exec()) {
@@ -67,30 +71,23 @@ bool UsersDBManager::insertUserIntoTable(const User &user, QString password)
     QSqlQuery query;
 
     query.prepare("INSERT INTO Users(nickname, password, profilePhoto, accountType, status)"
-                  "VALUES(:nickname, :password, :profilePhoto, :accountType, 'unconfirmed')");
+                  "VALUES(:nickname, :password, :profilePhoto, :accountType, (SELECT statusId FROM Statuses WHERE status = 'unconfirmed'))");
 
-    query.bindValue(":nickname", user.getNickname()); qDebug() << user.getNickname();
-    query.bindValue(":password", QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex())); qDebug() << QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex());
-    query.bindValue(":profilePhoto", user.getProfilePhoto()); qDebug() << user.getProfilePhoto();
+    query.bindValue(":nickname", user.getNickname());
+    query.bindValue(":password", QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex()));
+    query.bindValue(":profilePhoto", user.getProfilePhoto());
+
     switch (user.getAccountType()) {
-        case AccountType::guest:
-            query.bindValue(":accountType", "guest");
-            break;
-
-        case AccountType::user:
-            query.bindValue(":accountType", "user");
-            break;
-
         case AccountType::developer:
-            query.bindValue(":accountType", "developer");
+            query.bindValue(":accountType", "2");
             break;
 
-        case AccountType::admin:
-            query.bindValue(":accountType", "admin");
+        case AccountType::contentManager:
+            query.bindValue(":accountType", "3");
             break;
 
         default:
-            query.bindValue(":accountType", "guest");
+            query.bindValue(":accountType", "1");
             break;
     };
 
@@ -101,4 +98,18 @@ bool UsersDBManager::insertUserIntoTable(const User &user, QString password)
     qDebug() << query.lastError();
 
     return false;
+}
+
+QVector<QString> UsersDBManager::getAccountTypes()
+{
+    QSqlQuery query;
+    QVector<QString> accountTypes;
+
+    if (query.exec("SELECT accountType FROM AccountTypes")) {
+        while (query.next()) {
+            accountTypes.push_back(query.value(0).toString());
+        }
+    }
+
+    return accountTypes;
 }

@@ -2,7 +2,6 @@
 #include "ui_registrationwindow.h"
 #include "Config.h"
 #include "user.h"
-#include "usersdbmanager.h"
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -19,10 +18,13 @@ RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QPixmap logoImage(pathToUIElements + "Logo.png");
     ui->logo->setPixmap(logoImage.scaled(150, 150, Qt::KeepAspectRatio));
 
-    ui->accountTypesComboBox->addItem("None");
-    ui->accountTypesComboBox->addItem("User");
-    ui->accountTypesComboBox->addItem("Developer");
-    ui->accountTypesComboBox->addItem("Admin");
+    this->userDBM = UsersDBManager::getInstance();
+
+    QVector<QString> accountTypes = userDBM->getAccountTypes();
+
+    for (QString accountType : accountTypes) {
+        ui->accountTypesComboBox->addItem(accountType);
+    }
 }
 
 RegistrationWindow::~RegistrationWindow()
@@ -34,13 +36,12 @@ void RegistrationWindow::on_continueButton_clicked()
 {
     if (!ui->nicknameInput->text().isEmpty() &&
         !ui->nicknameInput->text().isEmpty() &&
-        !this->profilePhoto.isEmpty() &&
-        ui->accountTypesComboBox->currentIndex() != 0)
+        !this->profilePhoto.isEmpty())
     {
         AccountType accountType;
 
         if (ui->accountTypesComboBox->currentIndex() == 2) accountType = AccountType::developer;
-        if (ui->accountTypesComboBox->currentIndex() == 3) accountType = AccountType::admin;
+        if (ui->accountTypesComboBox->currentIndex() == 3) accountType = AccountType::contentManager;
         else accountType = AccountType::user;
 
         QVector<Game> games;  

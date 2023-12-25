@@ -1,4 +1,5 @@
 #include "purchasedgamesdbmanager.h"
+#include "Config.h"
 #include "gamesdbmanager.h"
 #include "qsqlerror.h"
 #include "QFile"
@@ -19,7 +20,7 @@ QVector<Game> PurchasedGamesDBManager::getGamesOfUserById(int id)
     GamesDBManager *gamesDBManager = GamesDBManager::getInstance();
     QVector<Game> games;
 
-    query.prepare("SELECT gameId FROM PurchasedGames WHERE userId = :id AND status = 'confirmed'");
+    query.prepare("SELECT gameId FROM PurchasedGames WHERE userId = :id AND status = (SELECT statusId FROM Statuses WHERE status = 'confirmed')");
     query.bindValue(":id", id);
 
     if (query.exec()) {
@@ -35,11 +36,7 @@ bool PurchasedGamesDBManager::addPurchase(int userId, int gameId, QString paymen
 {
     QSqlQuery query;
 
-    if (query.prepare("")) {
-
-    }
-
-    query.prepare("INSERT INTO PurchasedGames(userId, gameId, status, payment) VALUES(:userId, :gameId, 'unconfirmed', :payment)");
+    query.prepare("INSERT INTO PurchasedGames(userId, gameId, status, payment) VALUES(:userId, :gameId, (SELECT statusId FROM Statuses WHERE status = 'unconfirmed'), :payment)");
     query.bindValue(":userId", userId);
     query.bindValue(":gameId", gameId);
     query.bindValue(":payment", payment);
@@ -52,27 +49,26 @@ bool PurchasedGamesDBManager::addPurchase(int userId, int gameId, QString paymen
     return false;
 }
 
-void PurchasedGamesDBManager::deletePurchaseByGameId(int gameId)
+bool PurchasedGamesDBManager::deletePurchaseByGameId(int gameId)
 {
     QSqlQuery query;
 
-    query.prepare("SELECT userId, gameId FROM PurchasedGames WHERE gameId = :gameId");
+    query.prepare("SELECT payment FROM PurchasedGames WHERE gameId = :gameId");
     query.bindValue(":gameId", gameId);
     if (query.exec()) {
         if (query.next()) {
-            QString payment = query.value(0).toString() + query.value(1).toString();
+            QString payment = query.value(0).toString();
 
-            query.prepare("DELETE FROM PurchasedGames WHERE gameId = :gameId");
+            query.prepare("DELETE FROM PurchasedGames WHERE gameId = :gameId;");
             query.bindValue(":gameId", gameId);
 
             if (query.exec()) {
-                QFile::remove(payment);
+                QFile::remove(pathToPayments + payment);
+                return true;
             }
         }
     }
 
-
-
-
-
+    query.lastError();
+    return false;
 }

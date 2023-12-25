@@ -11,7 +11,7 @@ public:
 
     bool addPurchase(int userId, int gameId, QString payment);
 
-    void deletePurchaseByGameId(int gameId);
+    bool deletePurchaseByGameId(int gameId);
 
 private:
     PurchasedGamesDBManager() = default;

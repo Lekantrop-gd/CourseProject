@@ -22,7 +22,7 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
         ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + user->getProfilePhoto()));
         ui->profilePhoto->setMinimumSize(200, 200);
 
-        if (user->getAccountType() != AccountType::developer && user->getAccountType() != AccountType::admin) {
+        if (user->getAccountType() != AccountType::developer && user->getAccountType() != AccountType::contentManager) {
             ui->addGameButton->hide();
         }
 

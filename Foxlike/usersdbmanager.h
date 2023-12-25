@@ -10,6 +10,7 @@ public:
     User* fetchUser(QString nickname, QString password);
     bool checkIfUserExists(QString nickname);
     bool insertUserIntoTable(const User& user, QString password);
+    QVector<QString> getAccountTypes();
 
 private:
     UsersDBManager() = default;

@@ -5,7 +5,7 @@ enum class AccountType {
     guest,
     user,
     developer,
-    admin,
+    contentManager,
 };
 
 #endif // ENUMS_H

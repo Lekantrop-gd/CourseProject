@@ -29,8 +29,8 @@ GameWindow::GameWindow(Game game, User* user, QWidget *parent) :
     ui->genreLabel->setText(ui->genreLabel->text() + game.getGenre());
     ui->priceLabel->setText(QString::number(game.getPrice(), 'f', 2) + "$");
     ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
-
-    if (user->getAccountType() != AccountType::admin) {
+    
+    if (user->getAccountType() != AccountType::contentManager) {
         ui->deleteGameButton->hide();
     }
 }
@@ -85,13 +85,9 @@ void GameWindow::on_deleteGameButton_clicked()
 
     if (reply == QMessageBox::Yes) {
         GamesDBManager *dbManager = GamesDBManager::getInstance();
-        PurchasedGamesDBManager *purchaseDBManager = PurchasedGamesDBManager::getInstance();
 
         if (!dbManager->deleteGame(this->game.getId())) {
             QMessageBox::warning(this, "Warning!", "Unable to delete game. Try later or contact the administration");
-        }
-        else {
-            purchaseDBManager->deletePurchaseByGameId(this->game.getId());
         }
 
         this->close();

@@ -2,6 +2,7 @@
 #define REGISTRATIONWINDOW_H
 
 #include <QDialog>
+#include "usersdbmanager.h"
 
 namespace Ui {
 class RegistrationWindow;
@@ -29,6 +30,8 @@ private:
     QString profilePhoto;
 
     void closeEvent(QCloseEvent *event) override;
+
+    UsersDBManager *userDBM;
 };
 
 #endif // REGISTRATIONWINDOW_H
