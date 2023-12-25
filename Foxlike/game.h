@@ -44,7 +44,7 @@ private:
     QString genre;
     QString banner;
     QString image;
-    QString icon;
+    QString logo;
 };
 
 #endif // GAME_H

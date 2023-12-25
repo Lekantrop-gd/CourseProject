@@ -1,7 +1,7 @@
 #include "purchasedgamesdbmanager.h"
 #include "gamesdbmanager.h"
-#include "usersdbmanager.h"
 #include "qsqlerror.h"
+#include "QFile"
 #include <QSqlQuery>
 
 PurchasedGamesDBManager* PurchasedGamesDBManager::instance = nullptr;
@@ -56,8 +56,23 @@ void PurchasedGamesDBManager::deletePurchaseByGameId(int gameId)
 {
     QSqlQuery query;
 
-    query.prepare("DELETE FROM PurchasedGames WHERE gameId = :gameId");
+    query.prepare("SELECT userId, gameId FROM PurchasedGames WHERE gameId = :gameId");
     query.bindValue(":gameId", gameId);
+    if (query.exec()) {
+        if (query.next()) {
+            QString payment = query.value(0).toString() + query.value(1).toString();
 
-    query.exec();
+            query.prepare("DELETE FROM PurchasedGames WHERE gameId = :gameId");
+            query.bindValue(":gameId", gameId);
+
+            if (query.exec()) {
+                QFile::remove(payment);
+            }
+        }
+    }
+
+
+
+
+
 }

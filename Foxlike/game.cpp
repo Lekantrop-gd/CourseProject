@@ -32,7 +32,7 @@ QString Game::getImage() const
 
 QString Game::getIcon() const
 {
-    return icon;
+    return logo;
 }
 
 QString Game::getDeveloper() const
@@ -71,5 +71,5 @@ Game::Game(int id, const QString &title, const QString &shortDescription, const 
     genre(genre),
     banner(banner),
     image(image),
-    icon(icon)
+    logo(icon)
 {}

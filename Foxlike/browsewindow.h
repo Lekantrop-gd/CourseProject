@@ -44,11 +44,11 @@ private slots:
 private:
     Ui::BrowseWindow *ui;
 
-    GamesDBManager* dbManager;
+    GameWindow* gameWindow;
     EntryWindow* entryWindow;
     ProfileWindow* profileWindow;
+    GamesDBManager* dbManager;
     User* user;
-    GameWindow* gameWindow;
 
     void refreshGames(QVector<Game> games);
 };

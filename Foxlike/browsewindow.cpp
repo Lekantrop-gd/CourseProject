@@ -44,15 +44,12 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     this->profileWindow = new ProfileWindow(nullptr);
     this->gameWindow = nullptr;
 
-    connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);    
+    connect(entryWindow, &EntryWindow::userLoggedIn, this, &BrowseWindow::on_userLoggedIn);
+    connect(entryWindow, &EntryWindow::hidden, this, &BrowseWindow::on_subWindowClosed);
 }
 
 BrowseWindow::~BrowseWindow()
 {
-    delete this->entryWindow;
-    delete this->user;
-    delete this->profileWindow;
-    delete this->gameWindow;
     delete ui;
 }
 
@@ -142,7 +139,11 @@ void BrowseWindow::on_subWindowClosed()
 
 void BrowseWindow::on_search_textChanged(const QString &arg1)
 {
+    ui->priceSlider->setSliderPosition(ui->priceSlider->maximum());
+    ui->genreComboBox->setCurrentIndex(0);
+
     ui->filterButtons->hide();
+
     refreshGames(this->dbManager->getGamesByKeyWords(arg1));
 }
 

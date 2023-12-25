@@ -15,9 +15,11 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
     this->setWindowIcon(QIcon(pathToUIElements + "Logo.ico"));
 
     if (user != nullptr) {
+        this->user = user;
+
         ui->nicknameLabel->setText(user->getNickname());
 
-        ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + user->getProfilePhoto() + profilePhotosExtension));
+        ui->profilePhoto->setPixmap(QPixmap(pathToProfilesImages + user->getProfilePhoto()));
         ui->profilePhoto->setMinimumSize(200, 200);
 
         if (user->getAccountType() != AccountType::developer && user->getAccountType() != AccountType::admin) {
@@ -26,22 +28,35 @@ ProfileWindow::ProfileWindow(User* user, QWidget *parent) :
 
         ui->GamesScrollArea->setMinimumSize(sizeOfGameCard[0] + 50, sizeOfGameCard[1] + 20);
 
-        PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
-
-        if (user->getAccountType() != AccountType::guest) {
-            int counter = 0;
-            for (Game game : purchasedGamesDBManager->getGamesOfUserById(user->getId())) {
-                GameCard *gameCardWidget = new GameCard(game);
-                ui->GamesGrid->addWidget(gameCardWidget, counter, 0);
-                counter++;
-            }
-        }
+        refreshGames();
     }
 }
 
 ProfileWindow::~ProfileWindow()
 {
     delete ui;
+}
+
+void ProfileWindow::refreshGames()
+{
+    QLayoutItem *item;
+    while ((item = ui->GamesGrid->takeAt(0)) != nullptr) {
+        if (QWidget *widget = item->widget()) {
+            delete widget;
+        }
+        delete item;
+    }
+
+    if (this->user->getAccountType() != AccountType::guest) {
+        PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
+        int counter = 0;
+
+        for (Game game : purchasedGamesDBManager->getGamesOfUserById(user->getId())) {
+            GameCard *gameCardWidget = new GameCard(game);
+            ui->GamesGrid->addWidget(gameCardWidget, counter, 0);
+            counter++;
+        }
+    }
 }
 
 void ProfileWindow::on_gameAdded()

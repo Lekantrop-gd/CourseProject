@@ -20,12 +20,15 @@ public:
     explicit ProfileWindow(User* user, QWidget *parent = nullptr);
     ~ProfileWindow();
 
+    void refreshGames();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::ProfileWindow *ui;
     GameAddingWindow* gameAddingWindow;
+    User* user;
 
 private slots:
     void on_gameAdded();

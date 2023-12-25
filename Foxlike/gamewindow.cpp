@@ -62,7 +62,7 @@ void GameWindow::on_purchaseButton_clicked()
         if (purchasedGamesDBManager->addPurchase(this->user->getId(),
                                                  this->game.getId(),
                                                  QString::number(this->user->getId()) +
-                                                 QString::number(this->game.getId()) + filePath.mid(filePath.indexOf("."))))
+                                                 QString::number(this->game.getId())))
         {
             QMessageBox::information(this, "Congratulation!", "You bought this game! It will appear in your accont when admin confirms it.");
         }

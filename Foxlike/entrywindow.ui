@@ -259,6 +259,40 @@ QPushButton:hover {
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="continueButton_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 5%;
+	background: rgb(54, 54, 54);
+	min-height: 40px;
+}
+
+QPushButton:hover {
+	background-color: rgb(65, 65, 65);
+	border-radius: 10%;
+}</string>
+         </property>
+         <property name="text">
+          <string>Registration</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_5">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

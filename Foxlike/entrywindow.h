@@ -2,6 +2,7 @@
 #define ENTRYWINDOW_H
 #include <QMainWindow>
 #include "user.h"
+#include "registrationwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EntryWindow; }
@@ -13,6 +14,7 @@ class EntryWindow : public QMainWindow
 
 signals:
     void userLoggedIn(User* user);
+    void hidden();
 
 public:
     EntryWindow(QWidget *parent = nullptr);
@@ -23,7 +25,13 @@ private slots:
 
     void on_continueAsGuestButton_clicked();
 
+    void on_continueButton_2_clicked();
+
 private:
     Ui::EntryWindow *ui;
+
+    RegistrationWindow *registrationWindow;
+
+    void closeEvent(QCloseEvent* event) override;
 };
 #endif // ENTRYWINDOW_H

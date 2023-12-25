@@ -1,12 +1,13 @@
 #include "entrywindow.h"
 #include "ui_entrywindow.h"
 #include "usersdbmanager.h"
+#include "registrationwindow.h"
 #include "Config.h"
-#include "Enums.h"
 #include <QFileDialog>
 #include <QPixmap>
 #include <QIcon>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 EntryWindow::EntryWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,9 @@ EntryWindow::EntryWindow(QWidget *parent)
 
     QPixmap logoImage(pathToUIElements + "Logo.png");
     ui->logo->setPixmap(logoImage.scaled(150, 150, Qt::KeepAspectRatio));
+
+    this->registrationWindow = new RegistrationWindow();
+    connect(registrationWindow, &RegistrationWindow::hidden, this, &EntryWindow::show);
 }
 
 EntryWindow::~EntryWindow()
@@ -46,14 +50,8 @@ void EntryWindow::on_continueButton_clicked()
                 QMessageBox::warning(this, "Warning!", "Password is wrong!");
             }
         }
-
         else {
-            if (QMessageBox::question(this, "No account found!",
-                                      "There is no account with that nickname! "
-                                      "Would you like to create a new one?") == QMessageBox::Yes)
-            {
-
-            }
+            QMessageBox::warning(this, "Warning!", "There is no account with that username!");
         }
     }
     else {
@@ -71,3 +69,16 @@ void EntryWindow::on_continueAsGuestButton_clicked()
     ui->nicknameInput->clear();
     ui->passwordInput->clear();
 }
+
+void EntryWindow::on_continueButton_2_clicked()
+{
+    registrationWindow->show();
+    this->hide();
+}
+
+void EntryWindow::closeEvent(QCloseEvent *event)
+{
+    emit hidden();
+    event->accept();
+}
+

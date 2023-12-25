@@ -64,10 +64,17 @@ void GameAddingWindow::on_publishGameButton_clicked()
         ui->genreInput->text().length() < 1||
         ui->priceInput->text().length() < 1)
     {
-        QMessageBox::warning(this, "Warning!", "You haven't filled all fields or met the minimum number of characters.");
+        QMessageBox::warning(this, "Warning!",
+                             "You haven't filled all fields or met the minimum number of characters.");
     }
     else
     {
+        if (!ui->priceInput->text().toFloat()) {
+            QMessageBox::warning(this, "Warning!",
+                                 "Price can't be a string.");
+            return;
+        }
+
         GamesDBManager *dbManager = GamesDBManager::getInstance();
 
         Game game(
@@ -80,18 +87,21 @@ void GameAddingWindow::on_publishGameButton_clicked()
             ui->publisherInput->text(),
             ui->releaseDateInput->text(),
             ui->genreInput->text(),
-            QFileInfo(this->banner).fileName(),
-            QFileInfo(this->image).fileName(),
-            QFileInfo(this->logo).fileName()
+            ui->titleInput->text() + QString::number(1),
+            ui->titleInput->text() + QString::number(2),
+            ui->titleInput->text() + QString::number(3)
             );
 
         if (!dbManager->inserGameIntoTable(game)) {
             QMessageBox::warning(this, "Warning!", "Unable to add game. Try later or change title or short/full description, it might cause the problem.");
         }
+        else {
+            QMessageBox::information(this, "Congratulations!", "You'he added your game! Now wait until administration approve it");
+        }
 
-        QFile::copy(this->banner, pathToGamesImages + QFileInfo(this->banner).fileName());
-        QFile::copy(this->image, pathToGamesImages + QFileInfo(this->image).fileName());
-        QFile::copy(this->logo, pathToGamesImages + QFileInfo(this->logo).fileName());
+        QFile::copy(this->banner, pathToGamesImages + ui->titleInput->text() + QString::number(1));
+        QFile::copy(this->image, pathToGamesImages + ui->titleInput->text() + QString::number(2));
+        QFile::copy(this->logo, pathToGamesImages + ui->titleInput->text() + QString::number(3));
 
         emit gameAdded();
     }

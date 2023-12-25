@@ -1,5 +1,6 @@
 #include "usersdbmanager.h"
 #include "purchasedgamesdbmanager.h"
+#include "qsqlerror.h"
 #include <QSqlQuery>
 #include <QCryptographicHash>
 
@@ -26,7 +27,7 @@ User* UsersDBManager::fetchUser(QString nickname, QString password)
                 PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
                 AccountType accountType;
 
-                if (query.value(4).toString() == "user") accountType = AccountType::guest;
+                if (query.value(4).toString() == "user") accountType = AccountType::user;
                 else if (query.value(4).toString() == "developer") accountType = AccountType::developer;
                 else if (query.value(4).toString() == "admin") accountType = AccountType::admin;
                 else accountType = AccountType::guest;
@@ -68,9 +69,9 @@ bool UsersDBManager::insertUserIntoTable(const User &user, QString password)
     query.prepare("INSERT INTO Users(nickname, password, profilePhoto, accountType, status)"
                   "VALUES(:nickname, :password, :profilePhoto, :accountType, 'unconfirmed')");
 
-    query.bindValue(":nickname", user.getNickname());
-    query.bindValue(":passowrd", password);
-    query.bindValue(":profilePhoto", user.getProfilePhoto());
+    query.bindValue(":nickname", user.getNickname()); qDebug() << user.getNickname();
+    query.bindValue(":password", QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex())); qDebug() << QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex());
+    query.bindValue(":profilePhoto", user.getProfilePhoto()); qDebug() << user.getProfilePhoto();
     switch (user.getAccountType()) {
         case AccountType::guest:
             query.bindValue(":accountType", "guest");
@@ -96,6 +97,8 @@ bool UsersDBManager::insertUserIntoTable(const User &user, QString password)
     if (query.exec()) {
         return true;
     }
+
+    qDebug() << query.lastError();
 
     return false;
 }
