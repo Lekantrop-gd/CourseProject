@@ -40,22 +40,22 @@ void RegistrationWindow::on_continueButton_clicked()
     {
         AccountType accountType;
 
-        if (ui->accountTypesComboBox->currentIndex() == 2) accountType = AccountType::developer;
-        if (ui->accountTypesComboBox->currentIndex() == 3) accountType = AccountType::contentManager;
+        if (ui->accountTypesComboBox->currentIndex() == 1) accountType = AccountType::developer;
+        if (ui->accountTypesComboBox->currentIndex() == 0) accountType = AccountType::contentManager;
         else accountType = AccountType::user;
 
         QVector<Game> games;  
 
         User user(0,
                   ui->nicknameInput->text(),
-                  ui->nicknameInput->text(),
+                  ui->nicknameInput->text().remove(QChar(' ')),
                   games,
                   accountType);
 
         UsersDBManager *userDBM = UsersDBManager::getInstance();
 
         if (userDBM->insertUserIntoTable(user, ui->passwordInput->text())) {
-            QFile::copy(this->profilePhoto, pathToProfilesImages + ui->nicknameInput->text());
+            QFile::copy(this->profilePhoto, pathToProfilesImages + ui->nicknameInput->text().remove(QChar(' ')));
 
             QMessageBox::information(this, "Congratulations!", "You'he registered your account! Now wait until administration approve it");
 

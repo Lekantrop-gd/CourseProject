@@ -57,7 +57,6 @@ bool MySQLDBManager::openDataBase() {
         return true;
     }
     else {
-
         return false;
     }
 }
@@ -72,7 +71,7 @@ bool MySQLDBManager::createTables() {
                     "genreId INT PRIMARY KEY AUTO_INCREMENT, "
                     "genre VARCHAR(255) NOT NULL UNIQUE)"))
     {
-        qDebug() << "1" << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 
@@ -80,7 +79,7 @@ bool MySQLDBManager::createTables() {
                     "statusId INT PRIMARY KEY AUTO_INCREMENT, "
                     "status VARCHAR(255) NOT NULL UNIQUE)"))
     {
-        qDebug() << "2" << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 
@@ -88,7 +87,7 @@ bool MySQLDBManager::createTables() {
                     "accountTypeId INT PRIMARY KEY AUTO_INCREMENT, "
                     "accountType VARCHAR(255) NOT NULL UNIQUE)"))
     {
-        qDebug() << "3" << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 
@@ -109,7 +108,7 @@ bool MySQLDBManager::createTables() {
                     "FOREIGN KEY (genre) REFERENCES Genres(genreId), "
                     "FOREIGN KEY (status) REFERENCES Statuses(statusId))"))
     {
-        qDebug() << "1"  << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 
@@ -123,7 +122,7 @@ bool MySQLDBManager::createTables() {
                     "FOREIGN KEY (accountType) REFERENCES AccountTypes(accountTypeId), "
                     "FOREIGN KEY (status) REFERENCES Statuses(statusId))"))
     {
-        qDebug() << "2"  << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 
@@ -132,11 +131,11 @@ bool MySQLDBManager::createTables() {
                     "gameId INT, "
                     "status INT, "
                     "payment VARCHAR(255), "
-                    "FOREIGN KEY (userId) REFERENCES Users(id), "
-                    "FOREIGN KEY (gameId) REFERENCES Games(id), "
+                    "FOREIGN KEY (userId) REFERENCES Users(id) ON DELETE CASCADE, "
+                    "FOREIGN KEY (gameId) REFERENCES Games(id) ON DELETE CASCADE, "
                     "FOREIGN KEY (status) REFERENCES Statuses(statusId))"))
     {
-        qDebug() << "3" << query.lastError().text();
+        qDebug() << query.lastError().text();
         return false;
     }
 

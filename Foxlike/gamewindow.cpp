@@ -27,7 +27,12 @@ GameWindow::GameWindow(Game game, User* user, QWidget *parent) :
     ui->publisherLabel->setText(ui->publisherLabel->text() + game.getPublisher());
     ui->releaseDateLabel->setText(ui->releaseDateLabel->text() + game.getReleaseDate());
     ui->genreLabel->setText(ui->genreLabel->text() + game.getGenre());
-    ui->priceLabel->setText(QString::number(game.getPrice(), 'f', 2) + "$");
+
+    QString price;
+    if (game.getPrice() == 0) price = "Free";
+    else price = QString::number(game.getPrice(), 'f', 2) + "$";
+
+    ui->priceLabel->setText(price);
     ui->descriptionTextBrowser->setTextInteractionFlags(Qt::NoTextInteraction);
     
     if (user->getAccountType() != AccountType::contentManager) {
@@ -55,7 +60,19 @@ void GameWindow::on_purchaseButton_clicked()
     else {
         PurchasedGamesDBManager *purchasedGamesDBManager = PurchasedGamesDBManager::getInstance();
 
-        QString filePath = QFileDialog::getOpenFileName(nullptr, "Select payment screenshot", QDir::homePath(), "Images(*.jpg, *.jpeg, *.jpe *.jif, *.jfif, *.jfi, *.png)");
+        QMessageBox::information(this, "Payment", "In order to purchase the game, "
+                                       "you need to pay for it using the "
+                                       "card number: **************** and "
+                                       "upload a screenshot of the payment");
+
+
+        QString filePath = QFileDialog::getOpenFileName(nullptr, "Select payment screenshot", QDir::homePath(), "Images(*.jpg, *.jpeg, *.png)");
+
+        if (filePath.isEmpty()) {
+            QMessageBox::warning(this, "Warning!", "Select a payment screenshot!");
+            return;
+        }
+
         QFile::copy(filePath, pathToPayments + QString::number(this->user->getId()) +
                                                QString::number(this->game.getId()));
 

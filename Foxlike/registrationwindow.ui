@@ -149,6 +149,9 @@ min-height: 40px</string>
         <property name="text">
          <string/>
         </property>
+        <property name="maxLength">
+         <number>50</number>
+        </property>
         <property name="placeholderText">
          <string>Nickname</string>
         </property>

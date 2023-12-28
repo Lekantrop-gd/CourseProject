@@ -14,8 +14,11 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: rgb(18, 18, 18);
-color: rbg(255, 255, 255);</string>
+   <string notr="true">QWidget {
+	background: rgb(18, 18, 18);
+	color: rbg(255, 255, 255);
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -144,6 +147,9 @@ QPushButton:hover {
 	height: 25px;
 }</string>
             </property>
+            <property name="maxLength">
+             <number>255</number>
+            </property>
            </widget>
           </item>
           <item>
@@ -154,7 +160,7 @@ QPushButton:hover {
              </font>
             </property>
             <property name="text">
-             <string>Full description (min. 80 characters):</string>
+             <string>Full description (min. 100 characters):</string>
             </property>
            </widget>
           </item>
@@ -275,6 +281,9 @@ QPushButton:hover {
 	height: 25px;
 }</string>
             </property>
+            <property name="maxLength">
+             <number>70</number>
+            </property>
             <property name="placeholderText">
              <string>Game title</string>
             </property>
@@ -290,6 +299,9 @@ QPushButton:hover {
 	height: 25px;
 }</string>
             </property>
+            <property name="maxLength">
+             <number>70</number>
+            </property>
             <property name="placeholderText">
              <string>Developer</string>
             </property>
@@ -304,6 +316,9 @@ QPushButton:hover {
 	color: rgb(200, 200, 200);
 	height: 25px;
 }</string>
+            </property>
+            <property name="maxLength">
+             <number>70</number>
             </property>
             <property name="placeholderText">
              <string>Publisher</string>
@@ -327,6 +342,26 @@ QPushButton:hover {
 	height: 25px;
 }</string>
             </property>
+            <property name="maximumDateTime">
+             <datetime>
+              <hour>21</hour>
+              <minute>59</minute>
+              <second>59</second>
+              <year>3000</year>
+              <month>12</month>
+              <day>31</day>
+             </datetime>
+            </property>
+            <property name="minimumDateTime">
+             <datetime>
+              <hour>0</hour>
+              <minute>0</minute>
+              <second>0</second>
+              <year>1970</year>
+              <month>1</month>
+              <day>1</day>
+             </datetime>
+            </property>
             <property name="displayFormat">
              <string>MM.dd.yyyy</string>
             </property>
@@ -341,6 +376,9 @@ QPushButton:hover {
 	color: rgb(200, 200, 200);
 	height: 25px;
 }</string>
+            </property>
+            <property name="maxLength">
+             <number>255</number>
             </property>
             <property name="placeholderText">
              <string>Genre</string>
@@ -361,6 +399,9 @@ QPushButton:hover {
 	color: rgb(200, 200, 200);
 	height: 25px;
 }</string>
+            </property>
+            <property name="maxLength">
+             <number>6</number>
             </property>
             <property name="placeholderText">
              <string>Price</string>

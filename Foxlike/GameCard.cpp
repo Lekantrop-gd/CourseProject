@@ -19,7 +19,16 @@ GameCard::GameCard(Game game, QWidget *parent) : QWidget(parent), game(game)
     QLabel *gameDescription = new QLabel(game.getShortDescription());
     gameDescription->setStyleSheet("color: " + shadedTextColor + ";");
 
-    QLabel *gamePrice = new QLabel(QString::number(game.getPrice(), 'f', 2) + "$");
+    QString price;
+
+    if (game.getPrice() == 0) {
+        price = "Free";
+    }
+    else {
+        price = QString::number(game.getPrice(), 'f', 2) + "$";
+    }
+
+    QLabel *gamePrice = new QLabel(price);
     gamePrice->setStyleSheet("color: " + mainTextColor + "; font-size: 20px;");
 
     QGridLayout *gridLayout = new QGridLayout(this);

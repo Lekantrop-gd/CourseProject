@@ -50,6 +50,17 @@ FORMS += \
     profilewindow.ui \
     registrationwindow.ui
 
+#MOC_DIR = moc
+#RCC_DIR = rcc
+#UI_DIR = ui
+#unix:OBJECTS_DIR = unix
+#win32:OBJECTS_DIR = win32
+#macx:OBJECTS_DIR = mac
+
+#CONFIG(release, debug|release) {
+#    win32:QMAKE_POST_LINK = $$(QTDIR)/bin/windeployqt $$OUT_PWD/release
+#}
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

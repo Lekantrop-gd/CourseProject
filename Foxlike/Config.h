@@ -2,10 +2,10 @@
 #define CONFIG_H
 #include <QString>
 
-const QString pathToUIElements = "recources/uielements/";
-const QString pathToGamesImages = "recources/gamesImages/";
-const QString pathToProfilesImages = "recources/profilesImages/";
-const QString pathToPayments = "recources/payments/";
+const QString pathToUIElements = "resources/uielements/";
+const QString pathToGamesImages = "resources/gamesImages/";
+const QString pathToProfilesImages = "resources/profilesImages/";
+const QString pathToPayments = "resources/payments/";
 const QString backgroundColor = "rgb(18, 18, 18)";
 const QString selectedBackgroundColor = "rgb(25, 25, 25)";
 const QString mainTextColor = "rgb(200, 200, 200)";
