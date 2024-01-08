@@ -9,6 +9,8 @@
 #include <QVector>
 #include <QSqlDatabase>
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QDir>
 
 BrowseWindow::BrowseWindow(QWidget *parent) :
     QMainWindow(parent),

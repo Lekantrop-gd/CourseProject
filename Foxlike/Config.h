@@ -1,11 +1,12 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 #include <QString>
+#include <QDir>
 
-const QString pathToUIElements = "resources/uielements/";
-const QString pathToGamesImages = "resources/gamesImages/";
-const QString pathToProfilesImages = "resources/profilesImages/";
-const QString pathToPayments = "resources/payments/";
+const QString pathToUIElements = QDir::currentPath() + "/resources/uielements/";
+const QString pathToGamesImages = QDir::currentPath() + "/resources/gamesImages/";
+const QString pathToProfilesImages = QDir::currentPath() + "/resources/profilesImages/";
+const QString pathToPayments = QDir::currentPath() + "resources/payments/";
 const QString backgroundColor = "rgb(18, 18, 18)";
 const QString selectedBackgroundColor = "rgb(25, 25, 25)";
 const QString mainTextColor = "rgb(200, 200, 200)";

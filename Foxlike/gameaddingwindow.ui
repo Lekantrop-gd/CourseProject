@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QWidget {
 	background: rgb(18, 18, 18);
-	color: rbg(255, 255, 255);
+	color: rgb(255, 255, 255);
 }
 </string>
   </property>
@@ -344,7 +344,7 @@ QPushButton:hover {
             </property>
             <property name="maximumDateTime">
              <datetime>
-              <hour>21</hour>
+              <hour>23</hour>
               <minute>59</minute>
               <second>59</second>
               <year>3000</year>
@@ -357,9 +357,9 @@ QPushButton:hover {
               <hour>0</hour>
               <minute>0</minute>
               <second>0</second>
-              <year>1970</year>
-              <month>1</month>
-              <day>1</day>
+              <year>1969</year>
+              <month>12</month>
+              <day>31</day>
              </datetime>
             </property>
             <property name="displayFormat">
