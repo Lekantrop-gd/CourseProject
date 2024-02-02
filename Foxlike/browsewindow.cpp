@@ -31,6 +31,9 @@ BrowseWindow::BrowseWindow(QWidget *parent) :
     this->setWindowTitle("Foxlike Games");
     this->setWindowIcon(QIcon(pathToUIElements + "Logo.ico"));
 
+    ui->accountButton->setIcon(QIcon((pathToUIElements + "avatar-icon.png")));
+    ui->Logo->setPixmap(pathToUIElements + "Logo.png");
+
     ui->scrollArea->setMinimumSize(sizeOfGameCard[0] * 3 + 50, sizeOfGameCard[1] + 20);
     ui->filterButtons->hide();
 

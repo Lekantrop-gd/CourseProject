@@ -53,7 +53,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../UI/Resources/Logo.png</pixmap>
+          <pixmap>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/resources/uielements/Logo.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -211,7 +211,7 @@ QPushButton:hover  {
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../UI/Resources/avatar-icon.png</normaloff>../UI/Resources/avatar-icon.png</iconset>
+           <normaloff>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/resources/uielements/avatar-icon.png</normaloff>../build-Foxlike-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/resources/uielements/avatar-icon.png</iconset>
          </property>
          <property name="iconSize">
           <size>
